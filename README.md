@@ -23,6 +23,8 @@ Ruby 2.6.5, Rails 5.2.4
 - Search function<br>
 - Getting News function<br>
 - Self Screening function<br>
+- guard-livereload<br>
+- Activate doctor’s accounts function
 
 <h3>Catalog design</h3>
 https://docs.google.com/document/d/1Rd42Yjrem_pQDzaBcn42rNh0R4hHjFFI-jJzkni9_E0/edit?usp=sharing
@@ -34,10 +36,10 @@ https://docs.google.com/document/d/1FCmVvV8ZUsMzj6fFRwoXJTM8xY4w2ncOf-01nAxou4g/
 https://docs.google.com/document/d/1KK5GQQIlAgECrUaVq8hXdnxJbUbnmhNdXSYLIigrASw/edit?usp=sharing
 
 <h3>Screen transition</h3>
-https://docs.google.com/document/d/1JKeQkmN1Xl1ZgcTa_BNvPGLG7a02OKssYLlEy1pl0C0/edit?usp=sharing
+https://cacoo.com/diagrams/SdWSaI2lHy7LaTru/E9117
 
 <h3>Wire frame diagrams</h3>
-https://docs.google.com/document/d/1Lf1c7ofAyBDu3NIElQShBmaPtB-dbtCfHFy0IU1W3Dg/edit?usp=sharing
+https://cacoo.com/diagrams/SdWSaI2lHy7LaTru/E63CC
 
 <h3>Scheduled to use Gem</h3>
 - guard-livereload<br>
