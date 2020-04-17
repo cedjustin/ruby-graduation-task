@@ -33,7 +33,7 @@ https://docs.google.com/document/d/1Rd42Yjrem_pQDzaBcn42rNh0R4hHjFFI-jJzkni9_E0/
 https://docs.google.com/document/d/1FCmVvV8ZUsMzj6fFRwoXJTM8xY4w2ncOf-01nAxou4g/edit?usp=sharing
 
 <h3>ER diagram</h3>
-https://docs.google.com/document/d/1KK5GQQIlAgECrUaVq8hXdnxJbUbnmhNdXSYLIigrASw/edit?usp=sharing
+https://cacoo.com/diagrams/SdWSaI2lHy7LaTru/0521A
 
 <h3>Screen transition</h3>
 https://cacoo.com/diagrams/SdWSaI2lHy7LaTru/E9117
