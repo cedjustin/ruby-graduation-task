@@ -11,7 +11,7 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Doctors</a>
+                <%= link_to "Doctors", users_path, class:"nav-link"%>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
@@ -36,7 +36,7 @@
                     <p class="text-paragraphs">You can take a short screening test to diagnose your self by click <mark class="animated heartBeat delay-3s">Self Screening</mark> button, or if you are a doctor that wants to help please click <mark class="animated heartBeat delay-3s">Apply</mark>.</p>
                     <div class="">
                         <a class="btn btn-lg m-2 bg-accent" href="#" role="button">Self Screening</a>
-                        <a class="btn btn-outline-dark btn-lg m-2" href="#" role="button">Apply</a>
+                        <%= link_to "Apply", new_user_registration_path, class:"btn btn-outline-dark btn-lg m-2"%>
                     </div>
                 </div>
             </div>
