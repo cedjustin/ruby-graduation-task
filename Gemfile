@@ -64,3 +64,4 @@ gem "font-awesome-rails"
 gem "httparty"
 gem 'time_ago_in_words'
 gem 'devise'
+gem 'carrierwave', '~> 2.0'

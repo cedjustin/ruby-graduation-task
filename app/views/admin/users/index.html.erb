@@ -1,0 +1,18 @@
+<div class="admin-page">
+    <nav class="navbar navbar-expand-lg navbar-dark home-navbar">
+        <a class="navbar-brand" href="#">Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto nav-pill">
+                <li class="nav-item d-flex align-items-center m-2">
+                    <span class="text-accent m-2"><%= current_user.email %></span>   
+                </li>
+                <li class="nav-item active m-2">
+                    <%= link_to('Logout', destroy_user_session_path, method: :delete,class:"btn bg-accent btn-pill") %>   
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div> 

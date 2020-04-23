@@ -1,0 +1,29 @@
+<div>
+    <%= form_with(model: user, local: true, html: { multipart: true }) do |form| %>
+    <% if user.errors.any? %>
+        <div id="error_explanation">
+        <ul>
+            <% user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.label :username %>
+        <%= form.text_field :username, class: "form-control"  %>
+    </div>
+
+    </div>
+
+    <div class="field mt-2 mb-2">
+        <%= form.label "Upload your cv"%>
+        <%= form.file_field :image%>
+    </div>
+
+    <div class="actions mt-2 mb-2 text-center">
+        <%= form.submit "Update", class: "btn btn-outline-dark" %>
+    </div>
+    <% end %>
+</div>

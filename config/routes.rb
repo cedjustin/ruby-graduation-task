@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   get "/home" => "essentials#index"
   root "essentials#index"
   resources :users
+  namespace :admin do
+    resources :users
+  end
 end

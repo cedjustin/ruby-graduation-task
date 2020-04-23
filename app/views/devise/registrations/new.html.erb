@@ -4,8 +4,8 @@
       <div>
         <p class="notice text-primary"><%= notice %></p>
         <p class="alert text-danger"><%= alert %></p>
-        <%= link_to "RCA", root_path, class:"display-4 text-dark"%>
-        <p class="lead mt-1 mb-2">Welcome to RCA</p>
+        <%= link_to "CRA", root_path, class:"display-4 text-dark"%>
+        <p class="lead mt-1 mb-2">Welcome to CRA</p>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -30,6 +30,7 @@
           <div class="actions">
             <%= f.submit "Sign up", class:"btn btn-block bg-light-accent text-light mt-3" %>
           </div>
+
         <% end %>
 
         <%= render "devise/shared/links" %>
