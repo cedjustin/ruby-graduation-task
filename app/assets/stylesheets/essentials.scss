@@ -43,18 +43,22 @@
     color: #f8e1f4
 }
 
+.text-accent-dark{
+    color: #363062!important
+}
+
 .text-paragraphs{
     color:#dbdbdb
 }
 
-.card{
+.essential-card{
     -webkit-box-shadow: 0px 13px 28px -26px rgba(54,48,98,1);
     -moz-box-shadow: 0px 13px 28px -26px rgba(54,48,98,1);
     box-shadow: 0px 13px 28px -26px rgba(54,48,98,1);
     transition: all 0.9s;
     border-radius: 15px!important;
 }
-.card:hover{
+.essential-card:hover{
     -webkit-box-shadow: 0px 13px 80px -26px rgba(216,185,195,1);
     -moz-box-shadow: 0px 13px 80px -26px rgba(216,185,195,1);
     box-shadow: 0px 13px 80px -26px rgba(216,185,195,1);
@@ -87,4 +91,39 @@
 
 .btn-pill{
     border-radius: 50px!important
+}
+
+.table-pill{
+    border-radius: 10px!important
+}
+
+.download-icon{
+    width:2rem!important
+}
+
+.bg-accent-success{
+    background-color: #43d8c9!important;
+}
+
+.tr-hover{
+    border-radius: 10px!important;
+    transition:all 0.9s
+}
+
+.tr-hover:hover{
+    background-color: #fff0f5!important;
+    border-radius: 10px!important;
+    transition:all 0.9s
+}
+
+.card-columns{
+    column-count: 2!important;
+}
+
+.card-bg-light{
+    background-color: #f7f7f7!important
+}
+
+.card-bg-dark{
+    background-color: #d8b9c3!important
 }

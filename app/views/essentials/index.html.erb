@@ -52,9 +52,11 @@
         </div>
         <div class="card-columns">
             <% @news.each do |n| %>
-            <div class="card border-0">
+            <div class="card border-0 essential-card">
+                <%if n["urlToImage"].present?%>
                     <%= image_tag n["urlToImage"], class:"card-img-top"%>
-                    <div class="card-body">
+                <%end%>
+                <div class="card-body">
                     <p class="h5 card-title" ><%= n["title"]%></p>
                     <div class="container">
                         <p class="card-text d-inline"><small class="text-muted"><%= time_ago_in_words(n["publishedAt"])%></small></p>

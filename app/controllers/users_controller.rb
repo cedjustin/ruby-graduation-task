@@ -25,6 +25,14 @@ class UsersController < ApplicationController
         validate_user(user_params)
     end
 
+    def destroy
+        if @user.destroy
+          redirect_to admin_users_path, notice: 'User was successfully destroyed.'
+        else
+          redirect_to admin_users_path, notice: 'can not delete last admin'
+        end
+    end
+
     private
 
     def set_user
