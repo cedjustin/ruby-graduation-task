@@ -4,8 +4,8 @@ module Admin
         before_action :check_if_signed_in_and_is_admin
 
         def index
-            @requests = User.where(activated:false)
-            @active_users = User.where(activated:true, admin:false ).order("updated_at DESC")
+            @requests = User.where(activated:false).page params[:page]
+            @active_users = User.where(activated:true, admin:false ).order("updated_at DESC").page params[:page]
             @all_doctors = @requests.length + @active_users.length
         end
 
