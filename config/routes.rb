@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users do
       get :activate
+      member do
+        get :doctors
+      end
     end
   end
 end

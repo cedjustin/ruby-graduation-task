@@ -5,8 +5,10 @@ module Admin
 
         def index
             @requests = User.where(activated:false).page params[:page]
-            @active_users = User.where(activated:true, admin:false ).order("updated_at DESC").page params[:page]
-            @all_doctors = @requests.length + @active_users.length
+            @all_requets_count = User.where(activated:false).length
+            @all_requets_without_full_info_count = User.where(activated:false,username:nil,cv:nil).length
+            @all_active_users_count = User.where(activated:true, admin:false ).length
+            @all_doctors_count = @all_requets_count + @all_active_users_count
         end
 
         def activate
@@ -21,6 +23,10 @@ module Admin
             else
                 redirect_to root_path
             end
+        end
+
+        def doctors
+            @active_users = User.where(activated:true, admin:false).page params[:page]
         end
 
         private
