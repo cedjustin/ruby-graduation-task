@@ -9,6 +9,10 @@ class UsersController < ApplicationController
         elsif current_user.admin
             redirect_to admin_users_path
         end
+        @all_active_users_count = User.where(activated:true, admin:false ).length
+        @all_active_users = User.where(activated:true, admin:false ).page params[:page]
+        @all_symptoms_count = Symptom.all.length
+        @all_symptoms = Symptom.all
     end
 
     def show

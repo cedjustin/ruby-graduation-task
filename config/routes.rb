@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "/home" => "essentials#index"
   root "essentials#index"
   resources :users
+  resources :symptoms
   namespace :admin do
     resources :users do
       get :activate

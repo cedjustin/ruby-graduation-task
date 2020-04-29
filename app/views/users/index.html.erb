@@ -1,0 +1,62 @@
+<div class="doctor-page">
+    <nav class="navbar navbar-expand-lg navbar-light home-navbar">
+        <a class="navbar-brand" href="#">Doctor</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto doctor-nav-pill bg-secondary">
+                <li class="nav-item d-flex align-items-center m-2">
+                    <span class="text-light m-2"><%= current_user.email %></span>   
+                </li>
+                <li class="nav-item active m-2">
+                    <%= link_to('Logout', destroy_user_session_path, method: :delete,class:"btn bg-light btn-pill") %>   
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="card-columns">
+            <div class="card border-0 doctor-card mb-5">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <span class="card-title font-weight-bold text-dark">Symptoms(<%=@all_symptoms_count = Symptom.all.length%>)</span>
+                        <%= link_to('Register', new_symptom_path, class:"btn bg-dark text-light btn-pill") %> 
+                    </div>
+                    <div class="mt-4">
+                        <%if @all_symptoms_count == 0%>
+                            <p>There are no registered <mark>Symptoms</mark> yet, Be the first to register a <mark>Symptom</mark> by clicking register button above in the corner</p>
+                        <%end%>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-0 doctor-card mb-5">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <span class="card-title font-weight-bold text-dark">Doctors(<%=@all_active_users_count = User.where(activated:true, admin:false ).length%>)</span>
+                        <img src="https://img.icons8.com/cotton/64/000000/doctors-bag--v1.png" class="download-icon"/>
+                    </div>
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Names</th>
+                            <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <% count = 0%>
+                        <tbody>
+                            <% @all_active_users.each do |doctor|%>
+                                <tr>
+                                    <th scope="row"><%= count += 1 %></th>
+                                    <td><%= doctor.username %></td>
+                                    <td>comming soon..</td>
+                                </tr>
+                            <%end%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
