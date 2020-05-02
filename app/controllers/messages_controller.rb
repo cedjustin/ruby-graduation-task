@@ -10,12 +10,12 @@ class MessagesController < ApplicationController
         # Although it is written like this, because it is a little redundant code to use it in actual field
         # If you have the extra resources, try to refactor your code!
         @messages = @conversation.messages
-        if @messages.length > 10
-            @over_ten = true
-            @messages = Message.where(id: @messages[-10..-1].pluck(:id))
+        if @messages.length > 6
+            @over_six = true
+            @messages = Message.where(id: @messages[-6..-1].pluck(:id))
         end
         if params[:m]
-            @over_ten = false
+            @over_six = false
             @messages = @conversation.messages
         end
         if @messages.last
@@ -27,12 +27,19 @@ class MessagesController < ApplicationController
 
     def create
         @message = @conversation.messages.build(message_params)
-        if @message.save
-            redirect_to conversation_messages_path(@conversation)
+        @message.isSender = check_if_sender_or_receiver(@message)
+        @message.save
+    end
+
+    def check_if_sender_or_receiver(message)
+        if @conversation["sender_id"] == message.user.id
+            return true
         else
-            redirect_to conversation_messages_path(@conversation), notice: "message not sent"
+            return false
         end
     end
+
+    helper_method :check_if_sender_or_receiver
 
     private
     def message_params

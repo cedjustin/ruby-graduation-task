@@ -178,3 +178,38 @@
 .doctor-chat-image{
     width: 10rem
 }
+
+.chat-page{
+    width: 100%;
+    height: 100vh;
+    background-color: #204051;
+}
+
+.chatbox{
+    height: 50vh;
+    overflow-y: scroll; 
+    overflow-x: inherit;
+}
+
+.message-area{
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+}
+
+.bubble-card{
+    max-width: 30rem;
+    word-wrap: break-word;
+}
+
+.sent-bubble-card{
+    border-radius: 0px 25px 25px 25px;
+}
+
+.received-bubble-card{
+    border-radius: 25px 0px 25px 25px;
+    background-color: #84a9ac;
+}
+
+.conversation-card{
+    border-radius: 25px;
+}

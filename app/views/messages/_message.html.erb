@@ -1,0 +1,31 @@
+<% if message.body.present? %>
+    <%if message.isSender == true %>
+        <div class="container d-flex justify-content-start mt-2 animated fadeIn">
+            <div> 
+                <div class="m-2 d-flex justify-content-start">
+                    <span><%= message.user.username%></span>
+                </div>
+                <div class="bubble-card">
+                    <p class="sent-bubble-card bg-white p-3"><%= message.body%></p>
+                </div>
+                <div>
+                    <small><%= message.message_time %></small>
+                </div>
+            </div>
+        </div>
+    <%else%>
+        <div class="container d-flex justify-content-end mt-2 animated fadeIn">
+            <div>
+                <div class="m-2 d-flex justify-content-end">
+                    <span><%= message.user.username%></span>
+                </div>
+                <div class="bubble-card">
+                    <p class="received-bubble-card p-3"><%= message.body%></p>
+                </div>
+                <div>
+                    <small><%= message.message_time %></small> 
+                </div>
+            </div>
+        </div>
+    <%end%>
+<% end %>

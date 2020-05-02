@@ -1,47 +1,39 @@
-<p id="notice"><%= notice %></p>
-<% if @over_ten %>
-  <%= link_to 'Previous messages', '?m=all' %>
-<% end %>
-<div class="ui segment">
-  <%if @messages != nil %>
-    <% @messages.each do |message| %>
-      <% if message.body.present? %>
-        <div class="item">
-          <div class="content">
-            <div class="header"><strong><%= message.user.username %></strong> <%= message.message_time %></div>
-            <div class="list">
-              <div class="item">
-                <i class="right triangle icon"></i>
-                <%= message.body %> /
-                <% if message.user == current_user %>
-                  <%= message.read ? 'Already read' : 'Unread' %>
-                <% end %>  
-              </div>
+<div class="chat-page d-flex justify-content-center align-items-center">
+  <div>
+    <%= link_to('Back', user_doctors_path(current_user),class:"btn doctor-btn-pill text-light mb-5") %>   
+    <div class="conversation-card bg-light ">
+      <div class="container" style="width:50rem">
+        <% if @over_six %>
+          <%= link_to 'Load previous messages....', '?m=all', class:"m-4 text-dark" %>
+        <% end %>
+        <div class="chatbox" id="chatbox">
+          <% @messages.each do |message| %>
+            <%= render "message", message: message%>
+          <% end %>
+        </div>
+        <% if @message.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@message.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+            <ul>
+            <% @message.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= form_with(model: [@conversation, @message]) do |f| %>
+          <div class="field row border mt-5 bg-white" style="border-radius:15px">
+            <div class="col-11">
+              <%= f.text_field :body, placeholder: " Enter a message here", autofocus: true,class: "form-control message-area border-0" %>
+              <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+            </div>
+            <div class="col-1 d-flex align-items-center justify-content-center">
+              <%= image_submit_tag("https://img.icons8.com/material-sharp/24/000000/filled-sent.png")%>
             </div>
           </div>
-        </div>
-      <% end %>
-    <% end %>
-  <%else%>
-  <%end%>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-<% if @message.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@message.errors.count, "error") %> prohibited this task from being saved:</h2>
-
-    <ul>
-    <% @message.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-<%= form_with(model: [@conversation, @message]) do |f| %>
-  <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
-  </div>
-    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-  <div>
-    <%= f.submit "send a message" %>
-  </div>
-<% end %>
