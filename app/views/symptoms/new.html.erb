@@ -1,0 +1,51 @@
+<div class="symptoms-page">
+    <div class="row container-fluid">
+        <div class="col-5 bg-white">
+            <%= link_to('Back', users_path, class:"btn doctor-btn-pill text-light mt-3") %> 
+            <div class="mt-5">
+                <p class="h4">Thank you for working with us</p>
+                <p>Registering a symptom will help our visitors know more about <mark>COVID-19</mark>, 
+                that's we need proven informations so that we can mislead or cause unwanted panic</p>
+            </div>
+            <div class="container">
+                <p class="h6">Symptom</p>
+                <%= form_with(model: @symptom, local: true, html: { multipart: true }) do |form| %>
+
+                    <% if @symptom.errors.any? %>
+                        <div id="error_explanation">
+                        <ul>
+                            <% @symptom.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                            <% end %>
+                        </ul>
+                        </div>
+                    <% end %>
+
+                    <div class="field mt-3">
+                        <%= form.label :title %>
+                        <%= form.text_field :title, class: "form-control"  %>
+                    </div>
+
+                    <div class="field">
+                        <%= form.label :description %>
+                        <%= form.text_area :content, class: "form-control"  %>
+                    </div>
+
+                    <div class="field mt-3">
+                        <%= form.label :Please_select_whether_it_is_a_common_symptom_or_not %>
+                        <%= form.select :main, [['not common', '!true'],['common', 'true']], class:"form-control border-0" %>
+                    </div>
+
+                    <%= form.hidden_field :user_id, :value => current_user.id %>
+
+                    <div class="actions mt-2 mb-2 text-center">
+                        <%= form.submit "Register", class: "btn btn-outline-dark" %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="col-7 symptoms-sub-page d-flex justify-content-center align-items-center">
+            <img src="/images/undraw_medical_care_movn-_1_.png" class="doc2">
+        <div>
+    </div>
+</div>

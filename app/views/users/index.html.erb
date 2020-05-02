@@ -5,56 +5,93 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto doctor-nav-pill bg-secondary">
+            <ul class="navbar-nav ml-auto doctor-nav-pill">
                 <li class="nav-item d-flex align-items-center m-2">
                     <span class="text-light m-2"><%= current_user.email %></span>   
                 </li>
                 <li class="nav-item active m-2">
-                    <%= link_to('Logout', destroy_user_session_path, method: :delete,class:"btn bg-light btn-pill") %>   
+                    <%= link_to('Logout', destroy_user_session_path, method: :delete,class:"btn doctor-btn-pill") %>   
                 </li>
             </ul>
         </div>
     </nav>
-    <div class="container mt-5">
-        <div class="card-columns">
-            <div class="card border-0 doctor-card mb-5">
+    <div class="container-fluid mt-5">
+        <div class="d-flex justify-content-around align-items-center">
+            <div class="card border-0 doctor-card p-2">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <span class="card-title font-weight-bold text-dark">Symptoms(<%=@all_symptoms_count = Symptom.all.length%>)</span>
-                        <%= link_to('Register', new_symptom_path, class:"btn bg-dark text-light btn-pill") %> 
+                        <%= link_to('Register', new_symptom_path, class:"btn text-light doctor-btn-pill") %> 
                     </div>
                     <div class="mt-4">
                         <%if @all_symptoms_count == 0%>
-                            <p>There are no registered <mark>Symptoms</mark> yet, Be the first to register a <mark>Symptom</mark> by clicking register button above in the corner</p>
+                            <span>There are no registered <mark>Symptoms</mark> yet,<br> Be the first to register a 
+                            <mark>Symptom</mark> by clicking register button<br> above in the corner</span>
+                        <%else%>
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Common</th>
+                                    <th scope="col">Registeredby</th>
+                                    <th scope="col">Date created at</th>
+                                    <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <% count = 0%>
+                                <tbody>
+                                    <% @all_symptoms.each do |symptom|%>
+                                        <tr>
+                                            <th scope="row"><%= count += 1 %></th>
+                                            <td><%= symptom.title %></td>
+                                            <%if symptom.main%>
+                                                <td>Yes</td>
+                                            <%else%>
+                                                <td>No</td>
+                                            <%end%>
+                                            <%if symptom.user_id == current_user.id%>
+                                                <td class="d-flex justify-content-center"><mark>You</mark></td>
+                                            <%else%>
+                                                <% @users.each do |user| %>
+                                                    <%if user.id == symptom.user_id%>
+                                                        <td>Dr.<%= user.username %></td>
+                                                    <%end%>
+                                                <% end %>
+                                            <%end%>
+                                            <td><%= time_ago_in_words(symptom["created_at"])%> ago</td>
+                                            <td><%= link_to "View", symptom_path(symptom), class:"doctor-text-accent"%></td>
+                                            <%if symptom.user_id == current_user.id%>
+                                                <td><%= link_to image_tag("https://img.icons8.com/android/24/000000/trash.png"),  symptom, method: :delete, data: { confirm: 'Are you sure?' }, class:"download-icon"%></td>
+                                            <%end%>
+                                        </tr>
+                                    <%end%>
+                                </tbody>
+                            </table>
+                            <div class="doctor-nav-pill"><div class="m-2 btn doctor-btn-pill"><%= paginate @all_symptoms,class:"pagination" %></div></div>
                         <%end%>
                     </div>
                 </div>
             </div>
-            <div class="card border-0 doctor-card mb-5">
+            <div class="card p-2 doctor-card border-0" style="min-width: 15rem">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <span class="card-title font-weight-bold text-dark">Doctors(<%=@all_active_users_count = User.where(activated:true, admin:false ).length%>)</span>
-                        <img src="https://img.icons8.com/cotton/64/000000/doctors-bag--v1.png" class="download-icon"/>
+                        <span class="card-title font-weight-bold text-dark">Chat</span>
+                        <img src="https://img.icons8.com/ios/50/000000/text-input-form.png" class="download-icon"/>
                     </div>
-                    <table class="table table-borderless">
-                        <thead>
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Names</th>
-                            <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <% count = 0%>
-                        <tbody>
-                            <% @all_active_users.each do |doctor|%>
-                                <tr>
-                                    <th scope="row"><%= count += 1 %></th>
-                                    <td><%= doctor.username %></td>
-                                    <td>comming soon..</td>
-                                </tr>
-                            <%end%>
-                        </tbody>
-                    </table>
+                    <div class="d-flex justify-content-around mt-5">
+                        <%if @all_active_users_count > 1%>
+                            <span class="card-title font-weight-bold text-dark">Want to view other doctors <br>you can chat with???<br> click <mark>View</mark> button</span>
+                        <%else%>
+                            <span class="font-weight-bold">There are no other doctors <br>right now</span>
+                        <%end%>
+                        <img src="/images/undraw_ideas_s70l.png" class="doctor-chat-image"/>
+                    </div>
+                    <%if @all_active_users_count > 1%>
+                        <div class="d-flex justify-content-center mt-4">
+                            <%= link_to "View",  user_doctors_path(current_user), class:"btn btn-block doctor-btn-pill text-light"%>
+                        </div>
+                    <%end%>
                 </div>
             </div>
         </div>
