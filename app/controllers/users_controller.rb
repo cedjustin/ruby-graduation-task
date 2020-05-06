@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     
     def index
         @users = User.all
-        if !current_user.activated
+        if !current_user.activated && !current_user.isPatient
             redirect_to edit_user_path(current_user)
         elsif current_user.admin
             redirect_to admin_users_path
