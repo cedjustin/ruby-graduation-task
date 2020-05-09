@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :essentials do
     get :screening
+    post :screening
   end
 
   resources :conversations do

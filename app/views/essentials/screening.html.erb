@@ -1,13 +1,67 @@
-<div class="screening-page">
-  <div class="row container-fluid">
-    <div class="col-5 bg-white">
+<%= form_with(model: @symptom, local: true) do |form| %>
+  <div class="screening-page">
+    <div class="row container-fluid">
+      <div class="col-5 bg-white">
         <div class="mt-2 d-flex align-items-center">
-            <img src="https://img.icons8.com/ios/50/000000/back.png" class="download-icon"/>
-            <%= link_to 'Back', home_path, class:'text-dark'%>
+          <img src="https://img.icons8.com/ios/50/000000/back.png" class="download-icon"/>
+          <%= link_to 'Back', home_path, class:'text-dark'%>
         </div>
+        <div class="symptom-form d-flex align-items-center justify-content-center container">
+          <div class="symptoms">
+            <div class="mb-3">
+              <% flash.each do |key, value| %>
+                <%if value == "go to a hospital"%>
+                  <div class="card animated bounceIn" style="width:23rem">
+                    <div class="card-body">
+                      <p class="card-title">Your health is very important</p>
+                      <div class="d-flex justify-content-center">
+                        <div class="symptom-result-dot mt-3 mb-3 bg-danger d-flex justify-content-center align-items-center">
+                          <span class="text-light">High chance</span>
+                        </div>
+                      </div>
+                      <p class="">Call 114 or go directly to your nearest emergency department.</p>
+                    </div>
+                  </div>
+                <%elsif value == "take care of yourself"%>
+                  <div class="card animated bounceIn" style="width:23rem">
+                    <div class="card-body">
+                      <p class="card-title">Your health is very important</p>
+                      <div class="d-flex justify-content-center">
+                        <div class="symptom-result-dot mt-3 mb-3 bg-primary d-flex justify-content-center align-items-center">
+                          <span class="text-light">Low chance</span>
+                        </div>
+                      </div>
+                      <p class="">Please keep social distancing and take care of your health.</p>
+                    </div>
+                  </div>
+                <%end%>
+              <% end %>
+            </div>
+            <%if !@test_done %>
+              <p class="mb-5"><span class="h5">Are you experiencing any of the following symptoms? Choose any/all that apply.</span></p>
+              <% @symptoms.each do |symptom| %>
+                <div class="d-flex align-items-center">
+                  <div class="">
+                    <label for="checkbox path">
+                      <%= form.check_box 'symptom', {multiple:true},"true","false" %>
+                    </label>
+                  </div>
+                  <div class="ml-2">
+                    <p class="h6"><%= symptom.title %></p>
+                    <p class="text-secondary">(<%= symptom.content %>)</p>
+                  </div>
+                </div>
+              <% end %>
+              <div class="actions">
+                <%= form.submit "continue",class:"btn btn-primary"%>
+              </div>
+            <%end%>
+          </div>
+        </div>
+      </div>
+      <div class="col-7 login-page d-flex justify-content-center align-items-center">
+        <img src="/images/undraw_fill_forms_yltj.png" class="doc2">
+      <div>
     </div>
-    <div class="col-7 login-page d-flex justify-content-center align-items-center">
-      <img src="/images/undraw_fill_forms_yltj.png" class="doc2">
-    <div>
   </div>
-</div>
+<%end%>
