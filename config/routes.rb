@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :essentials do
     get :screening
     post :screening
+    get :patient
+    post :patient
   end
 
   resources :conversations do
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :users do
     get :doctors
+    get :online_status
   end
 
   resources :symptoms

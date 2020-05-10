@@ -35,7 +35,8 @@
                     <hr class="my-4 bg-light">
                     <p class="text-paragraphs">You can take a short screening test to diagnose your self by click <mark class="animated heartBeat delay-3s">Self Screening</mark> button, or if you are a doctor that wants to help please click <mark class="animated heartBeat delay-3s">Apply</mark>.</p>
                     <div class="">
-                        <%= link_to "Self Screening", essential_screening_path(@patient.ids), class:"btn btn-lg m-2 bg-accent"%>
+                        <%= link_to "Talk to a doctor", essential_patient_path(@patient.ids), class:"btn btn-lg m-2 bg-accent"%>
+                        <%= link_to "Self Screening", essential_screening_path(@patient.ids), class:"btn btn-lg m-2 btn-outline-light"%>
                         <%= link_to "Apply", new_user_registration_path, class:"btn btn-outline-dark btn-lg m-2"%>
                     </div>
                 </div>
@@ -50,22 +51,7 @@
         <div class="mb-5">
             <h1 class="display-4">Main news</h1>
         </div>
-        <div class="card-columns">
-            <% @news.each do |n| %>
-            <div class="card border-0 essential-card">
-                <%if n["urlToImage"].present?%>
-                    <%= image_tag n["urlToImage"], class:"card-img-top"%>
-                <%end%>
-                <div class="card-body">
-                    <p class="h5 card-title" ><%= n["title"]%></p>
-                    <div class="container">
-                        <p class="card-text d-inline"><small class="text-muted"><%= time_ago_in_words(n["publishedAt"])%></small></p>
-                        <%= link_to "Readmore", class:"d-inline ml-5"%>
-                    </div>
-                    </div>
-                </div>
-            <% end %>
-        </div>
+       <%# news part%>
     </div>
 </div>
 <div class="footer-copyright text-center py-3">

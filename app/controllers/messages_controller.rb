@@ -1,6 +1,12 @@
 class MessagesController < ApplicationController
+
     before_action do
-        @conversation = Conversation.find(params[:conversation_id])
+        @conversation = Conversation.where(id:params[:conversation_id])
+        if @conversation.length == 0
+            redirect_to root_path
+        else
+            @conversation = Conversation.find(params[:conversation_id])
+        end
     end
 
 
@@ -19,7 +25,11 @@ class MessagesController < ApplicationController
             @messages = @conversation.messages
         end
         if @messages.last
-            @messages.where.not(user_id: current_user.id).update_all(read: true)
+            if current_user.present?
+                @messages.where.not(user_id: current_user.id).update_all(read: true)
+            else
+                redirect_to root_path
+            end
         end
         @messages = @messages.order(:created_at)
         @message = @conversation.messages.build
