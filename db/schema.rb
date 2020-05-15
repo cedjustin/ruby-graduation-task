@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_124421) do
     t.boolean "activated", default: false
     t.boolean "available", default: false
     t.string "cv"
-    t.boolean "isPatient", default: true
+    t.boolean "isPatient", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

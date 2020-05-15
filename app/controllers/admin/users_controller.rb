@@ -17,6 +17,7 @@ module Admin
                 @user["activated"] = true
                 user_hash = {"id"=>@user["id"], "email"=>@user["email"], "username"=> @user["username"], "admin"=> @user["admin"], "activated"=> @user["activated"], "available"=> @user["available"], "cv"=> @user["cv"]}
                 if @user.update(user_hash)
+                    UserNotifierMailer.send_activated_email(@user).deliver
                     redirect_to admin_users_path
                 else
                 end
