@@ -3,6 +3,8 @@ class SymptomsController < ApplicationController
     before_action :set_symptom, only: [:show, :edit, :update, :destroy]
 
     def index
+        @search = Symptom.ransack(params[:q])
+        @all_symptoms = @search.result.order(created_at: :desc).page(params[:page])
     end
 
     def new
@@ -20,6 +22,17 @@ class SymptomsController < ApplicationController
 
     def show
         @users = User.all
+    end
+
+    def edit
+    end
+
+    def update
+        if @symptom.update(symptom_params)
+          redirect_to users_path, notice: 'symptom was successfully updated.'
+        else
+          render :edit
+        end
     end
 
     def destroy

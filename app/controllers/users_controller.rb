@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         end
         @all_active_users_count = User.where(activated:true, admin:false ).length
         @all_symptoms_count = Symptom.all.length
-        @all_symptoms = Symptom.all.page params[:page]
+        @all_symptoms =  Symptom.all.order(created_at: :desc).page(params[:page])
         @all_conversations = Conversation.where(recipient_id: current_user.id)
         if @all_conversations.length > 0
             @all_patients_conversations = check_and_remove_unnecessary_conversations(@all_conversations)
@@ -35,7 +35,6 @@ class UsersController < ApplicationController
 
     def new
     end
-
 
     def edit
     end

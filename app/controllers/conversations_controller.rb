@@ -8,7 +8,8 @@ class ConversationsController < ApplicationController
           @conversation = Conversation.between(params[:sender_id], params[:recipient_id]).first
         else
           @conversation = Conversation.create!(conversation_params)
-          user = User.where(id:params[:recipient_id])
+          user = User.where(id: params[:recipient_id])
+          p user[0]
           UserNotifierMailer.send_conversation_email(user[0]).deliver
         end
         redirect_to conversation_messages_path(@conversation)

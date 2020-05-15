@@ -1,36 +1,36 @@
-<div class="symptoms-page d-flex align-items-center">
-    <div class="container-fluid">
-        <%= link_to('Back', users_path, class:"btn doctor-btn-pill text-dark mt-3") %>
-        <div class="container mt-5 d-flex justify-content-center">
-            <div class="card" style="min-width:25rem">
-                <div class="card-body">
-                    <p class="card-title h2">Symptom</p>
-                    <div class="ml-4">
-                        <p class="h4">Title</p>
-                        <p class="ml-2 h6"><%=@symptom.title%></p>
-                        <p class="h4">Description</p>
-                        <p class="ml-2 h6"><%=@symptom.content%></p>
-                        <%if @symptom.main%>
-                            <p class="m2 h6">It is a common symptom</p>
-                        <%else%>
-                            <p class="ml-2 h6">It is not a common symptom</p>
-                        <%end%>
-                        <p class="h4">Registeredby</p>
-                        <%if @symptom.user_id == current_user.id%>
-                            <p class="m2 h6">You</p>
-                        <%else%>
-                            <p class="ml-2 h6">
-                                <% @users.each do |user| %>
-                                    <%if user.id == @symptom.user_id%>
-                                        <td>Dr.<%= user.username %></td>
-                                    <%end%>
-                                <% end %>
-                            </p>
-                        <%end%>
-                    </div>
-                    <p class="mt-3"> created at<%= time_ago_in_words(@symptom["created_at"])%> ago, last update <%= time_ago_in_words(@symptom["updated_at"])%> ago</p>
+<div class="symptoms-page">
+    <div class="row container-fluid">
+        <div class="col-5 bg-white">
+            <%= link_to('Back', users_path, class:"btn doctor-btn-pill text-light mt-3") %> 
+            <div class="container mt-5">
                 <div>
+                    <p class="h4 mt-3">Title</p>
+                    <p class="ml-2 "><%=@symptom.title%></p>
+                    <p class="h4 mt-3">Description</p>
+                    <p class="ml-2 "><%=@symptom.content%></p>
+                    <%if @symptom.main%>
+                        <p class="h6 mt-3">It is a common symptom</p>
+                    <%else%>
+                        <p class="h6 mt-3">It is not a common symptom</p>
+                    <%end%>
+                    <p class="h4 mt-3">Registeredby</p>
+                    <%if @symptom.user_id == current_user.id%>
+                        <p class="ml-2 mt-3">You</p>
+                    <%else%>
+                        <p class="ml-2 mt-3">
+                            <% @users.each do |user| %>
+                                <%if user.id == @symptom.user_id%>
+                                    <p class="ml2 mt-3">Dr.<%= user.username %></td>
+                                <%end%>
+                            <% end %>
+                        </p>
+                    <%end%>
+                </div>
+                <p class="mt-3"> created <%= time_ago_in_words(@symptom["created_at"])%> ago, last update <%= time_ago_in_words(@symptom["updated_at"])%> ago</p>
             </div>
         </div>
+        <div class="col-7 symptoms-sub-page d-flex justify-content-center align-items-center">
+            <img src="/images/undraw_medical_care_movn-_1_.png" class="doc2">
+        <div>
     </div>
 </div>

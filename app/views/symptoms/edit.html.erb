@@ -3,12 +3,9 @@
         <div class="col-5 bg-white">
             <%= link_to('Back', users_path, class:"btn doctor-btn-pill text-light mt-3") %> 
             <div class="mt-5">
-                <p class="h4">Thank you for working with us</p>
-                <p>Registering a symptom will help our visitors know more about <mark>COVID-19</mark>, 
-                that's we need proven informations so that we can mislead or cause unwanted panic</p>
+                <p class="h4">You are about to edit this symptom</p>
             </div>
-            <div class="container">
-                <p class="h6">Symptom</p>
+            <div class="container mt-4">
                 <%= render 'form', symptom:@symptom %>
             </div>
         </div>

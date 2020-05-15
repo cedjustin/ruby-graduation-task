@@ -1,6 +1,6 @@
 <div class="doctor-page">
     <nav class="navbar navbar-expand-lg navbar-light home-navbar">
-        <a class="navbar-brand" href="#">Doctor</a>
+        <a class="navbar-brand" href="#">Doctor dashboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,31 +19,96 @@
             </ul>
         </div>
     </nav>
+    <div class="bg-white container mt-2">
+        <div class="container d-flex justify-content-center">
+            <div class="mt-3 mb-3">
+                <p class="h5 text-dark">Welcome, Dr. <%= current_user.username %>!</p>
+                <p class="text-secondary">Thank you for your help in these hard times that we are passing through</p>
+                <%if @all_symptoms_count == 0 %>
+                    <p class="text-secondary">By the way, there are no registered symptoms now, care to be the first to register the first one???? click <%= link_to('Register', new_symptom_path, class:"h5 text-dark") %> </p>
+                <%end%>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid mt-5 pb-5">
         <div class="">
-            <p class="h4 mt-5 mb-5">Chats</p>
             <div class="d-flex justify-content-around align-items-center m-3">
-                <div class="card p-2 doctor-card border-0" style="min-width: 10rem">
+                <div class="card p-2 doctor-card border-0 <%= @all_active_users_count > 1 ? "bg-white" : "bg-secondary"%>" style="min-width: 10rem">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <span class="card-title font-weight-bold text-dark">Chat</span>
-                            <img src="https://img.icons8.com/ios/50/000000/text-input-form.png" class="download-icon"/>
-                        </div>
-                        <div class="d-flex justify-content-around mt-5">
-                            <%if @all_active_users_count > 1%>
-                                <span class="card-title font-weight-bold text-dark">Want to view other doctors <br>you can chat with???<br> click <mark>View</mark> button</span>
+                            <span class="card-title font-weight-bold <%= @all_active_users_count > 1 ? "text-dark" : "text-light"%>">Doctors</span>
+                            <%if @all_active_users_count < 2%>
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                    width="26" height="26"
+                                    viewBox="0 0 172 172"
+                                    style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" 
+                                    stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" 
+                                    stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" 
+                                    font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                    <path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff">
+                                    <path d="M13.4375,16.125c-4.44067,0 -8.0625,3.62183 -8.0625,8.0625v86c0,4.44067 3.62183,8.0625 
+                                    8.0625,8.0625h19.20093c0.16797,2.87647 -0.30444,8.96533 -5.3855,17.42676c-0.5459,0.92383 -0.49341,
+                                    2.08911 0.12598,2.94995c0.5144,0.71387 1.33325,1.12329 2.18359,1.12329c0.18897,0 0.38843,-0.02099 0.58789,
+                                    -0.06299c20.75464,-4.60864 28.4812,-16.76538 30.73828,-21.43701h19.73633v13.4375c0,4.44067 3.62183,8.0625 8.0625,
+                                    8.0625h32.87988c1.6167,4.94458 7.06518,16.48193 23.17969,18.78101c0.12598,0.021 0.25195,0.03149 0.37793,0.03149c0.81885,
+                                    0 1.5957,-0.37793 2.11011,-1.02881c0.59839,-0.75586 0.74536,-1.76367 0.38843,-2.65601c-3.2334,-8.073 -3.32788,-12.9021 -3.08643,
+                                    -15.12768h14.02539c4.44067,0 8.0625,-3.62183 8.0625,-8.0625v-59.125c0,-4.44067 -3.62183,-8.0625 -8.0625,-8.0625h-13.4375v-40.3125c0,
+                                    -4.44067 -3.62183,-8.0625 -8.0625,-8.0625zM13.4375,21.5h123.625c1.48022,0 2.6875,1.20728 2.6875,2.6875v86c0,1.48022 -1.20728,2.6875 -2.6875,
+                                    2.6875h-77.9375c-1.15478,0 -2.18359,0.73486 -2.55103,1.83716c-0.04199,0.13647 -4.24121,12.14624 -21.76245,18.10913c4.91309,-11.03345 2.78198,
+                                    -17.78369 2.677,-18.10913c-0.36743,-1.10229 -1.39624,-1.83716 -2.55103,-1.83716h-21.5c-1.48022,0 -2.6875,-1.20728 -2.6875,-2.6875v-86c0,
+                                    -1.48022 1.20728,-2.6875 2.6875,-2.6875zM34.9375,53.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875c0,1.48022 1.19678,2.6875 2.6875,2.6875h48.
+                                    375c1.49072,0 2.6875,-1.20728 2.6875,-2.6875c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM94.0625,53.75c-1.49072,0 -2.6875,1.20728 -2.6875,
+                                    2.6875c0,1.48022 1.19678,2.6875 2.6875,2.6875h10.75c1.49072,0 2.6875,-1.20728 2.6875,-2.6875c0,-1.48022 -1.19678,-2.6875 -2.6875,
+                                    -2.6875zM34.9375,69.875c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875c0,1.48022 1.19678,2.6875 2.6875,2.6875h59.125c1.49072,0 2.6875,
+                                    -1.20728 2.6875,-2.6875c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM145.125,69.875h13.4375c1.48022,0 2.6875,1.20728 2.6875,
+                                    2.6875v59.125c0,1.48022 -1.20728,2.6875 -2.6875,2.6875h-16.125c-1.01831,0 -1.94214,0.57739 -2.40405,1.48022c-0.29395,
+                                    0.58789 -2.45654,5.47998 0.92383,16.33496c-12.49268,-3.93677 -14.59229,-15.0542 -14.68677,-15.5686c-0.20996,-1.29126 -1.33325,
+                                    -2.24658 -2.64551,-2.24658h-34.9375c-1.48022,0 -2.6875,-1.20728 -2.6875,-2.6875v-13.4375h51.0625c4.44067,0 8.0625,-3.62183 8.0625,
+                                    -8.0625zM21.5,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,
+                                    -1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM34.9375,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,
+                                    2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,
+                                    -2.6875zM48.375,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,
+                                    -1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM61.8125,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,
+                                    2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,
+                                    -2.6875zM75.25,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,
+                                    -2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM88.6875,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,
+                                    2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM102.125,96.75c-1.49072,
+                                    0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,
+                                    -1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM115.5625,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,
+                                    2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM129,96.75c-1.49072,0 -2.6875,
+                                    1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,
+                                    -2.6875 -2.6875,-2.6875z"></path></g></g>
+                                </svg>
                             <%else%>
-                                <span class="font-weight-bold">There are no other doctors <br>right now</span>
+                                <img src="https://img.icons8.com/material-rounded/24/000000/chat.png"/>
                             <%end%>
-                            <img src="/images/undraw_ideas_s70l.png" class="doctor-chat-image"/>
                         </div>
-                        <%if @all_active_users_count > 1%>
-                            <div class="d-flex justify-content-center mt-4">
-                                <%= link_to "View",  user_doctors_path(current_user), class:"btn btn-block doctor-btn-pill text-light"%>
-                            </div>
-                        <%end%>
+                        <div class="d-flex justify-content-around mt-2">
+                            <%if @all_active_users_count > 1%>
+                                <span class="card-title text-dark">Want to view other doctors <br>you can chat with???<br> click <mark>View</mark> button</span>
+                            <%else%>
+                                <span class="<%= @all_active_users_count > 1 ? "text-dark" : "text-light"%>">There are no other doctors to chat with<br>right now</span>
+                            <%end%>
+                        </div>
                     </div>
                 </div>
+                <%if !current_user.available%>
+                    <div class="card p-2 doctor-card border-0">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <span>Profile</span>
+                                <img src="https://img.icons8.com/ios-glyphs/30/000000/person-male.png"/>
+                            </div>
+                            <div class="d-flex justify-content-center mt-3">
+                                <div>    
+                                    <span><span class="h6">Names: </span><span><%= current_user.username%></span><br>
+                                    <span class="h6">Email: </span><span><%= current_user.email%></span></span>
+                                    <div><%= link_to "Edit info", edit_user_registration_path(current_user), class:"btn btn-outline-dark mt-3"%></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <%end%>
                 <div class="card p-2 doctor-card border-0 <%= current_user.available == true ? "bg-success" : "bg-dark"%>" style="min-width: 10rem">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -92,7 +157,7 @@
                         </div>
                         <div class="d-flex justify-content-around mt-2">
                             <p class="text-light">You are <%= current_user.available == true ? "online" : "offline"%> patients <%= current_user.available == true ? "can" : "can't"%> chat with you<br> 
-                            to make yourself <%= current_user.available == true ? "avaliable" : "not avaliable"%> for service..<br> 
+                            to make yourself <%= current_user.available != true ? "avaliable" : "not avaliable"%> for service..<br> 
                             please click <mark>Go <%= current_user.available == true ? "offline" : "online"%></mark> button below</p>
                         </div>
                         <%if current_user.available == true%>
@@ -126,7 +191,7 @@
                                                 <%if patient.id == conversation.sender_id%>
                                                     <tr>
                                                         <th scope="row"><%= n+=1%></th>
-                                                        <td>Patient.<%= patient.username%></td>
+                                                        <td>Patient. <%= patient.username%></td>
                                                         <td>
                                                             <%= link_to "Talk to",  conversations_path(sender_id: patient.id, recipient_id: current_user.id), method: :post , class:"text-success"%>
                                                         </td>
@@ -141,63 +206,68 @@
                     </div>
                 <%end%>
             </div>
-            <p class="h4 mt-5 mb-5">Symptoms</p>
-            <div class="card border-0 doctor-card p-2">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <span class="card-title font-weight-bold text-dark">Symptoms(<%=@all_symptoms_count = Symptom.all.length%>)</span>
-                        <%= link_to('Register', new_symptom_path, class:"btn text-light doctor-btn-pill") %> 
-                    </div>
-                    <div class="mt-4">
-                        <%if @all_symptoms_count == 0%>
-                            <span>There are no registered <mark>Symptoms</mark> yet,<br> Be the first to register a 
-                            <mark>Symptom</mark> by clicking register button<br> above in the corner</span>
-                        <%else%>
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Common</th>
-                                    <th scope="col">Registeredby</th>
-                                    <th scope="col">Date created at</th>
-                                    <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <% count = 0%>
-                                <tbody>
-                                    <% @all_symptoms.each do |symptom|%>
+            <%if @all_symptoms_count != 0%>
+                <p class="font-weight-bold mt-5 mb-5">Symptoms</p>
+                <div class="card border-0 doctor-card p-2">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <span class="card-title font-weight-bold text-dark">Symptoms <%=@all_symptoms_count = Symptom.all.length%> </span>
+                            <%= link_to('Register', new_symptom_path, class:"btn text-light doctor-btn-pill") %> 
+                        </div>
+                        <div class="mt-4">
+                            <%if @all_symptoms_count == 0%>
+                                <div class="container d-flex justify-content-center">
+                                    <span>There are no registered <mark>Symptoms</mark> yet, Be the first to register a 
+                                    <mark>Symptom</mark> by clicking register button above in the corner</span>
+                                </div>
+                            <%else%>
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <th scope="row"><%= count += 1 %></th>
-                                            <td><%= symptom.title %></td>
-                                            <%if symptom.main%>
-                                                <td>Yes</td>
-                                            <%else%>
-                                                <td>No</td>
-                                            <%end%>
-                                            <%if symptom.user_id == current_user.id%>
-                                                <td class="d-flex justify-content-center"><mark>You</mark></td>
-                                            <%else%>
-                                                <% @users.each do |user| %>
-                                                    <%if user.id == symptom.user_id%>
-                                                        <td>Dr.<%= user.username %></td>
-                                                    <%end%>
-                                                <% end %>
-                                            <%end%>
-                                            <td><%= time_ago_in_words(symptom["created_at"])%> ago</td>
-                                            <td><%= link_to "View", symptom_path(symptom), class:"doctor-text-accent"%></td>
-                                            <%if symptom.user_id == current_user.id%>
-                                                <td><%= link_to image_tag("https://img.icons8.com/android/24/000000/trash.png"),  symptom, method: :delete, data: { confirm: 'Are you sure?' }, class:"download-icon"%></td>
-                                            <%end%>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Common</th>
+                                            <th scope="col">Registeredby</th>
+                                            <th scope="col">Date created at</th>
+                                            <th scope="col">Actions</th>
                                         </tr>
-                                    <%end%>
-                                </tbody>
-                            </table>
-                            <div class="doctor-nav-pill"><div class="m-2 btn doctor-btn-pill"><%= paginate @all_symptoms,class:"pagination" %></div></div>
-                        <%end%>
+                                    </thead>
+                                    <% count = 0%>
+                                    <tbody>
+                                        <% @all_symptoms.each do |symptom|%>
+                                            <tr>
+                                                <th scope="row"><%= count += 1 %></th>
+                                                <td><%= symptom.title %></td>
+                                                <%if symptom.main%>
+                                                    <td>Yes</td>
+                                                <%else%>
+                                                    <td>No</td>
+                                                <%end%>
+                                                <%if symptom.user_id == current_user.id%>
+                                                    <td class="d-flex justify-content-center"><mark>You</mark></td>
+                                                <%else%>
+                                                    <% @users.each do |user| %>
+                                                        <%if user.id == symptom.user_id%>
+                                                            <td>Dr.<%= user.username %></td>
+                                                        <%end%>
+                                                    <% end %>
+                                                <%end%>
+                                                <td><%= time_ago_in_words(symptom["created_at"])%> ago</td>
+                                                <td><%= link_to "View", symptom_path(symptom), class:"doctor-text-accent"%></td>
+                                                <%if symptom.user_id == current_user.id%>
+                                                    <td><%= link_to image_tag("https://img.icons8.com/pastel-glyph/24/000000/edit.png"), edit_symptom_path(symptom), class:"doctor-text-accent"%></td>
+                                                    <td><%= link_to image_tag("https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png"),  symptom, method: :delete, data: { confirm: 'Are you sure?' }, class:"download-icon"%></td>
+                                                <%end%>
+                                            </tr>
+                                        <%end%>
+                                    </tbody>
+                                </table>
+                                <div class="doctor-nav-pill"><div class="m-2 btn doctor-btn-pill"><%= paginate @all_symptoms,class:"pagination" %></div></div>
+                            <%end%>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <%end%>
         </div>
     </div>
 </div>

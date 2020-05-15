@@ -4,7 +4,7 @@
       <div class="col-5 bg-white">
         <div class="mt-2 d-flex align-items-center">
           <img src="https://img.icons8.com/ios/50/000000/back.png" class="download-icon"/>
-          <%= link_to 'Back', home_path, class:'text-dark'%>
+          <%= link_to 'Back', essentials_path, class:'text-dark'%>
         </div>
         <div class="symptom-form d-flex align-items-center justify-content-center container">
           <div class="symptoms">
@@ -38,23 +38,30 @@
               <% end %>
             </div>
             <%if !@test_done %>
-              <p class="mb-5"><span class="h5">Are you experiencing any of the following symptoms? Choose any/all that apply.</span></p>
-              <% @symptoms.each do |symptom| %>
-                <div class="d-flex align-items-center">
-                  <div class="">
-                    <label for="checkbox path">
-                      <%= form.check_box 'symptom', {multiple:true},"true","false" %>
-                    </label>
+              <%if !@no_symptoms_registered %>
+                <p class="mb-5"><span class="h5">Are you experiencing any of the following symptoms? Choose any/all that apply.</span></p>
+                <% @symptoms.each do |symptom| %>
+                  <div class="d-flex align-items-center">
+                    <div class="">
+                      <label for="checkbox path">
+                        <%= form.check_box 'symptom', {multiple:true},"true","false" %>
+                      </label>
+                    </div>
+                    <div class="ml-2">
+                      <p class="h6"><%= symptom.title %></p>
+                      <p class="text-secondary">(<%= symptom.content %>)</p>
+                    </div>
                   </div>
-                  <div class="ml-2">
-                    <p class="h6"><%= symptom.title %></p>
-                    <p class="text-secondary">(<%= symptom.content %>)</p>
-                  </div>
+                <% end %>
+                <div class="actions">
+                  <%= form.submit "continue",class:"btn btn-primary"%>
                 </div>
-              <% end %>
-              <div class="actions">
-                <%= form.submit "continue",class:"btn btn-primary"%>
-              </div>
+              <%else%>
+                <div>
+                  <img src="https://img.icons8.com/color/96/000000/lost-and-found.png"/>
+                  <p>There are no registered symptoms now, please come back later.</p>
+                </div>
+              <%end%>
             <%end%>
           </div>
         </div>

@@ -9,6 +9,11 @@ class EssentialsController < ApplicationController
 
     def screening
         @symptoms = Symptom.where(main: true)
+        if @symptoms.length == 0
+            @no_symptoms_registered = true
+        else
+            @no_symptoms_registered = false
+        end
         @test_done = false
         flash[:success]=""
         if request.post?

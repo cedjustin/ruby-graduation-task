@@ -3,7 +3,7 @@
       <div class="col-5 bg-white">
         <div class="mt-2 d-flex align-items-center">
           <img src="https://img.icons8.com/ios/50/000000/back.png" class="download-icon"/>
-          <%= link_to 'Back', home_path, class:'text-dark'%>
+          <%= link_to 'Back', essentials_path, class:'text-dark'%>
         </div>
         <%if !@patient_processed%>
             <div class="patient-form container d-flex align-items-center">
@@ -19,12 +19,12 @@
         <%else%>
             <div class="patient-form container d-flex align-items-center">
                 <div>
-                    <p class="display-4">hello, <%= @registered_patient[0].username %></p>
+                    <p class="display-4">Hello, <%= @registered_patient[0].username %></p>
                     <%if @online_doctors.length == 0%>
                         <img src="https://img.icons8.com/clouds/64/000000/doctors-bag.png"/>
                         <p>There are no available doctors right now,<br>please try again later.......</p>
                     <%else%>
-                        <p class="h5">Here is a list of doctors you can talk to right now</p>
+                        <p>Here is a list of doctors you can talk to right now</p>
                         <table class="table">
                             <thead>
                                 <tr>

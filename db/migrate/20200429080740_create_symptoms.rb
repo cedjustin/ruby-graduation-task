@@ -3,7 +3,7 @@ class CreateSymptoms < ActiveRecord::Migration[5.2]
     create_table :symptoms do |t|
       t.string :title
       t.string :content
-      t.boolean :main
+      t.boolean :main, default: false
 
       t.timestamps
     end
