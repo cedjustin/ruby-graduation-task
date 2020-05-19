@@ -18,68 +18,112 @@
     <div class="container-fluid mt-5 pb-5">
         <% applications_without_full_informations = 0 %>
         <div class="d-flex justify-content-around align-items-center">
-            <div class="card m-2 card-bg-dark" style="width:20rem!important">
+            <div class="card m-2 card-bg-dark doctor-card" style="width:20rem!important">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <span class="card-title font-weight-bold text-light">Applications</span>
-                        <img src="https://img.icons8.com/ios/50/000000/text-input-form.png" class="download-icon"/>
+                        <span class="card-title font-weight-bold text-light">Requests</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                            width="26" height="26"
+                            viewBox="0 0 172 172"
+                            style=" fill:#000000;">
+                            <g fill="none" 
+                            fill-rule="nonzero" 
+                            stroke="none" stroke-width="1" 
+                            stroke-linecap="butt" stroke-linejoin="miter" 
+                            stroke-miterlimit="10" stroke-dasharray="" 
+                            stroke-dashoffset="0" font-family="none" 
+                            font-weight="none" font-size="none" text-anchor="none" 
+                            style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none">
+                            </path><g fill="#ffffff"><path d="M86,-0.20673c-1.31791,0 -2.60997,0.46514 -3.92788,
+                            1.44712c-82.02043,60.85637 -82.07212,67.54928 -82.07212,71.52885v79.38462c0,11.24099 8.60517,
+                            19.84615 19.84615,19.84615h132.30769c11.24099,0 19.84615,-8.60517 19.84615,-19.84615v-79.38462c0,
+                            -3.97956 -0.05168,-10.67247 -82.07212,-71.52885c-1.31791,-0.98197 -2.60997,-1.44712 -3.92788,
+                            -1.44712zM33.07692,46.30769h105.84615v36.38462l27.70192,-11.16346l-50.85577,40.3125l42.37981,
+                            43.62019l-51.68269,-37.00481l-20.46635,13.23077l-20.46635,-13.23077l-51.68269,37.00481l42.37981,
+                            -43.62019l-50.85577,-39.69231l27.70192,10.54327zM79.38462,59.53846v19.84615h-19.84615v13.23077h19.84615v19.84615h13.23077v-19.84615h19.84615v-13.23077h-19.84615v-19.84615z">
+                            </path></g></g>
+                        </svg>
                     </div>
-                    <%if @requests.length > 0 %>
-                        <div>
-                            <p class="h4 text-light">All Applications <%= @requests.length%><p>
-                            <div class="ml-2 text-light">
-                                <p class="h6 text-light">- All applications with full informations <%= @all_requets_without_full_info_count%><p>
-                                <% percentage_of_all_applications_with_full_information = (@all_requets_without_full_info_count == 0 ? 1 : @all_requets_without_full_info_count.to_f/@all_requets_count.to_f)*100%>
-                                <p class="text-light">- <%= percentage_of_all_applications_with_full_information.to_i%>% of all applications doesnt have full informations</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-animated bg-light" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: <%= percentage_of_all_applications_with_full_information %>%"></div>
-                            </div>
-                        </div>
-                    <%else%>
-                        <div>
-                            <p class="h4 text-light">There are no applications right now<p>
-                        </div>
-                    <%end%>
                 </div>
             </div>
-            <div class="card m-2 card-bg-light" style="width:20rem!important">
+            <div class="card m-2 card-bg-light doctor-card" style="width:20rem!important">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="card-title font-weight-bold">Active Doctors</span>
-                        <img src="https://img.icons8.com/bubbles/50/000000/medical-doctor.png" class="download-icon"/>
+                        <span class="card-title font-weight-bold">Doctors</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                            width="26" height="26"
+                            viewBox="0 0 172 172"
+                            style=" fill:#000000;">
+                            <g fill="none" fill-rule="nonzero" 
+                            stroke="none" stroke-width="1" stroke-linecap="butt" 
+                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" 
+                            stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" 
+                            text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" 
+                            fill="none"></path><g fill="#000000"><path d="M86,-0.1075c-45.27094,0 -51.08937,
+                            16.79688 -51.6,18.705c-0.04031,0.16125 -0.08062,0.26875 -0.1075,0.43l-6.88,54.9325c-0.13437,
+                            1.12875 0.34938,2.23063 1.1825,3.01c0.33594,0.30906 0.65844,0.59125 1.075,0.7525c-0.90031,2.72781 -2.09625,
+                            7.31 -3.01,15.265c0,0.04031 0,0.06719 0,0.1075c-1.53187,2.35156 -2.58,5.4825 -2.58,9.46c0,7.74 5.44219,
+                            13.98844 12.5775,15.8025c4.63594,12.01313 10.38719,24.8325 18.06,35.045c7.99531,10.62906 18.34219,
+                            18.5975 31.2825,18.5975c12.94031,0 23.28719,-7.96844 31.2825,-18.5975c7.67281,-10.2125 13.42406,
+                            -23.03187 18.06,-35.045c7.17563,-1.78719 12.5775,-8.03562 12.5775,-15.8025c0,-4.12531 -1.03469,
+                            -7.31 -2.58,-9.675c-0.91375,-7.88781 -2.10969,-12.44312 -3.01,-15.1575c0.41656,-0.16125 0.73906,
+                            -0.44344 1.075,-0.7525c0.83313,-0.77937 1.33031,-1.88125 1.1825,-3.01l-6.88,-54.9325c-0.02687,
+                            -0.16125 -0.06719,-0.26875 -0.1075,-0.43c-0.51062,-1.90812 -6.32906,-18.705 -51.6,-18.705zM82.56,
+                            20.64h6.88v13.76h13.76v6.88h-13.76v13.76h-6.88v-13.76h-13.76v-6.88h13.76zM86,71.4875c15.03656,
+                            0 33.63406,2.83531 44.72,4.73v18.92l3.9775,-0.645c0,0 1.62594,-0.26875 3.1175,0.43c1.49156,
+                            0.69875 3.225,1.935 3.225,7.6325c0,5.11969 -3.78937,9.07031 -8.6,9.5675l-2.0425,0.215l-0.7525,
+                            2.0425c-4.6225,12.16094 -10.54844,25.12813 -17.845,34.83c-7.29656,9.70188 -15.68156,15.91 -25.8,
+                            15.91c-10.11844,0 -18.50344,-6.20812 -25.8,-15.91c-7.29656,-9.70187 -13.115,-22.66906 -17.7375,
+                            -34.83l-0.7525,-2.0425l-2.15,-0.215c-4.82406,-0.49719 -8.6,-4.44781 -8.6,-9.5675c0,-5.42875 1.66625,
+                            -6.65156 3.225,-7.4175c1.55875,-0.76594 3.225,-0.645 3.225,-0.645l3.87,0.43v-18.705c11.08594,
+                            -1.89469 29.67,-4.73 44.72,-4.73z">
+                            </path></g></g>
+                        </svg>
                     </div>
-                    <%if @all_active_users_count > 0 %>
-                        <div>
-                            <p class="h4">All doctors <%= @all_doctors%><p>
-                            <div class="ml-2">
-                                <p class="h6">- All active doctors <%= @all_active_users_count%><p>
-                                <p class="h6">- All non active doctors <%= @all_requets_count%><p>
-                                <% active_doctor_percantage = (@all_active_users_count.to_f/@all_doctors_count.to_f)*100%>
-                                <p>- <%= active_doctor_percantage.to_i%>% of all doctors have been activated</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-animated" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: <%= active_doctor_percantage %>%"></div>
-                            </div>
-                            <%=link_to "View active Doctors", doctors_admin_user_path(current_user), class:"text-primary"%>
-                        </div>
-                    <%else%>
-                        <div>
-                            <p class="h4">There are no active doctors right now<p>
-                        </div>
-                    <%end%>
                 </div>
             </div>
-            <div class="card m-2 card-bg-success" style="width:20rem!important">
+            <div class="card m-2 card-bg-success doctor-card" style="width:20rem!important">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <span class="h4">Comming soon....</span>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="card-title font-weight-bold text-light">Symptoms</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                            width="26" height="26"
+                            viewBox="0 0 172 172"
+                            style=" fill:#000000;"><g fill="none" fill-rule="nonzero" 
+                            stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" 
+                            stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" 
+                            font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                            <path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M68.98813,
+                            23.95906l-3.44,0.12094l-3.44,0.12094c0,0 0.75946,19.46362 -13.26953,42.82531c-2.99422,
+                            4.98583 -6.70333,7.22877 -10.45438,10.3939c-3.75104,3.16513 -7.28284,7.85894 -7.23609,
+                            15.48c0.05044,7.89496 4.56165,12.80685 8.78141,14.96938c0.19763,0.10128 0.38101,0.14294 0.57781,
+                            0.23515c-1.6267,4.01947 -2.54496,8.1358 -2.47922,12.34906c0.06573,4.08117 1.57791,7.67144 4.13875,
+                            10.09156c2.56084,2.42012 6.02787,3.61469 9.62125,3.61469c3.54837,0 6.99417,-1.12397 9.54734,
+                            -3.52735c2.55173,-2.40202 4.03927,-5.9659 4.21266,-10.08484v-0.00672c0.00027,-0.00647 -0.00027,
+                            -0.01369 0,-0.02016c5.03305,4.72869 12.7381,6.68687 20.31078,6.69188c9.23038,0.00619 18.83502,
+                            -2.83666 23.79781,-10.01766c5.87436,-8.49989 13.92797,-7.14203 13.92797,-7.14203l0.26203,0.03359l0.25531,
+                            -0.00672c0,0 4.12493,-0.04795 8.34469,-2.21047c4.21976,-2.16253 8.73096,-7.07442 8.78141,-14.96938c0.04868,
+                            -7.62133 -3.47781,-12.31482 -7.22938,-15.48c-3.75154,-3.16497 -7.46701,-5.40829 -10.4611,-10.3939c-14.02899,
+                            -23.36169 -13.26953,-42.82531 -13.26953,-42.82531l-3.44,-0.12094l-3.44,-0.12094c0,0 0.0068,0.11816 0.00672,
+                            0.12094h-6.88672h-27.52672c-0.00008,-0.00278 0.00672,-0.12094 0.00672,-0.12094zM47.19922,109.95906c0.31993,
+                            0.02267 1.075,0.12094 1.075,0.12094h0.13438l0.13437,-0.00672c0,0 2.23513,-0.15277 5.72438,1.18922c0.91098,
+                            0.35141 1.83213,0.73301 2.74125,1.15563c0.07092,0.39272 0.2096,0.77011 0.40984,1.11531c0.81134,1.39406 1.35212,
+                            4.46115 1.25641,6.71875c0,0.00224 0,0.00448 0,0.00672c-0.11352,2.72026 -0.94465,4.31548 -2.05594,5.36156c-1.11129,
+                            1.04608 -2.68251,1.65953 -4.83078,1.65953c-2.10326,0 -3.74291,-0.65492 -4.89125,-1.74015c-1.14834,-1.08524 -1.94787,
+                            -2.6562 -1.98875,-5.1936c-0.05341,-3.42226 0.7489,-6.83428 2.29109,-10.38719zM117.07422,123.84c-1.24044,0.02737 -2.37004,
+                            0.72054 -2.95625,1.81406c0,0 -2.63389,4.91979 -5.27422,10.90453c-2.64033,5.98474 -5.45562,12.68007 -5.45562,18.2414c0,
+                            7.5579 6.2021,13.76 13.76,13.76c7.55789,0 13.76,-6.2021 13.76,-13.76c0,-5.56133 -2.80858,-12.25666 -5.44891,-18.2414c-2.64033,
+                            -5.98474 -5.28094,-10.90453 -5.28094,-10.90453c-0.61129,-1.14024 -1.81059,-1.84113 -3.10406,-1.81406zM117.14813,135.17453c0.84632,
+                            1.72561 1.01038,1.88035 2.01562,4.1589c2.51967,5.71126 4.86438,12.7719 4.86438,15.46656c0,3.83538 -3.04462,6.88 -6.88,6.88c-3.83539,
+                            0 -6.88,-3.04462 -6.88,-6.88c0,-2.69467 2.35142,-9.7553 4.87109,-15.46656c1.00487,-2.27769 1.16279,-2.43365 2.00891,-4.1589z">
+                            </path></g></g>
+                        </svg>
                     </div>
                 </div>
             </div>
         </div>
         <%if @requests.length > 0%>
-            <p class="text-light mb-3">Applications list</p>
+            <p class="text-light mb-3 mt-5">Applications list</p>
             <% column_counter = 0 %>
             <table class="table table-striped table-light">
                 <thead>
