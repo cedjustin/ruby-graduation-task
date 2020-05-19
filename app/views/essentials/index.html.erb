@@ -18,8 +18,8 @@
             <div class="col-6">
                 <div class="big-dot-container d-flex align-items-end justify-content-center">
                     <div>
-                        <div class="small-dot-container animated fadeInLeft"></div>
-                        <img src="/images/healthcare.png" alt="rss feed" class="doc animated fadeInLeft delay-1s" />
+                        <div class="small-dot-container animate__animated animate__fadeInLeft"></div>
+                        <img src="/images/healthcare.png" alt="rss feed" class="doc animate__animated animate__fadeInLeft animate__delay-1s" />
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <div>
                     <h1 class="display-4">Your medical partner in the fight against COVID-19</h1>
                     <hr class="my-4 bg-light">
-                    <p class="text-paragraphs">You can take a short screening test to diagnose your self by click <mark class="animated heartBeat delay-3s">Self Screening</mark> button, or if you are a doctor that wants to help please click <mark class="animated heartBeat delay-3s">Apply</mark>.</p>
+                    <p class="text-paragraphs">You can take a short screening test to diagnose your self by click <mark class="animate__animated animate__heartBeat animate__delay-3s">Self Screening</mark> button, or if you are a doctor that wants to help please click <mark class="animated heartBeat delay-3s">Apply</mark>.</p>
                     <div class="">
                         <%= link_to "Talk to a doctor", essential_patient_path(@patient.ids), class:"btn btn-lg m-2 bg-accent"%>
                         <%= link_to "Self Screening", essential_screening_path(@patient.ids), class:"btn btn-lg m-2 btn-outline-light"%>
@@ -47,17 +47,17 @@
         </div>
        <%# news part%>
         <div class="card-columns">
-            <% @news.each do |n| %>
-            <div class="card border-0 essential-card">
-                <%if n["urlToImage"].present?%>
-                    <%= image_tag n["urlToImage"], class:"card-img-top"%>
-                <%end%>
-                <div class="card-body">
-                    <p class="h5 card-title" ><%= n["title"]%></p>
-                    <div class="container">
-                        <p class="card-text d-inline"><small class="text-muted"><%= time_ago_in_words(n["publishedAt"])%></small></p>
-                        <%= link_to "Readmore", class:"d-inline ml-5"%>
-                    </div>
+            <% @all_news.each do |news| %>
+                <div class="card border-0 essential-card">
+                    <%if news["urlToImage"].present?%>
+                        <%= image_tag news["urlToImage"], class:"card-img-top"%>
+                    <%end%>
+                    <div class="card-body">
+                        <p class="h5 card-title" ><%= news["title"]%></p>
+                        <div class="container">
+                            <p class="card-text d-inline"><small class="text-muted"><%= time_ago_in_words(news["publishedAt"])%></small></p>
+                            <%= link_to "readmore", news["url"], :popup=>true %>
+                        </div>
                     </div>
                 </div>
             <% end %>
