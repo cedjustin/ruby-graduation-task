@@ -1,6 +1,6 @@
 <% if message.body.present? %>
     <%if message.isSender == true %>
-        <div class="container d-flex justify-content-start mt-2 animated fadeIn">
+        <div class="container d-flex justify-content-start mt-2 animate__animated animate__fadeIn">
             <div> 
                 <div class="m-2 d-flex justify-content-start">
                     <span><%= message.user.activated == true ? "Dr." : ""%><%= message.user.username%></span>
@@ -14,7 +14,7 @@
             </div>
         </div>
     <%else%>
-        <div class="container d-flex justify-content-end mt-2 animated fadeIn">
+        <div class="container d-flex justify-content-end mt-2 animate__animated animate__fadeIn">
             <div>
                 <div class="m-2 d-flex justify-content-end">
                     <span><%= message.user.activated == true ? "Dr." : ""%><%= message.user.username%></span>

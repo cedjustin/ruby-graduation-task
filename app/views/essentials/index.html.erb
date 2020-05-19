@@ -7,15 +7,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <%= link_to "Doctors", users_path, class:"nav-link"%>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
+                <li class="nav-item">
+                    <%= link_to "Doctors", users_path, class:"nav-link"%>
+                </li>
             </ul>
         </div>
     </nav>
@@ -49,9 +43,25 @@
 <div class="bg-light">
     <div class="container pt-5 pb-5">
         <div class="mb-5">
-            <h1 class="display-4">Main news</h1>
+            <h1 class="lead">Main news</h1>
         </div>
        <%# news part%>
+        <div class="card-columns">
+            <% @news.each do |n| %>
+            <div class="card border-0 essential-card">
+                <%if n["urlToImage"].present?%>
+                    <%= image_tag n["urlToImage"], class:"card-img-top"%>
+                <%end%>
+                <div class="card-body">
+                    <p class="h5 card-title" ><%= n["title"]%></p>
+                    <div class="container">
+                        <p class="card-text d-inline"><small class="text-muted"><%= time_ago_in_words(n["publishedAt"])%></small></p>
+                        <%= link_to "Readmore", class:"d-inline ml-5"%>
+                    </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
     </div>
 </div>
 <div class="footer-copyright text-center py-3">

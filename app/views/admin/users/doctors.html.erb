@@ -16,8 +16,34 @@
         </div>
     </nav>
     <div class="container mt-5">
-        <%if @active_users.length > 0 %>
-            <p class="text-light m5-5 mb-3">Active doctors list</p>
+        <%if @all_active_doctors.length > 0 %>
+            <% column_counter = 0 %>
+            <span class="h6 mt-3 text-light">Active doctors</span>
+            <table class="table table-striped table-light">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Names</th>
+                    <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @all_active_doctors.each do |doctor| %>
+                        <tr>
+                            <th><%= column_counter += 1 %></th>
+                            <td><%= doctor.username%></td>
+                            <td><%= doctor.email%></td>
+                        </tr>
+                    <%end%>
+                </tbody>
+            </table>
+        <%else%>
+            <div class="alert alert-warning" role="alert">
+                There are no active doctors right now
+            </div>
+        <%end%>
+        <%if @all_doctors.length > 0 %>
+            <p class="text-light h6">Doctors list</p>
             <% column_counter = 0 %>
             <table class="table table-striped table-light">
                 <thead>
@@ -25,41 +51,40 @@
                     <th scope="col">#</th>
                     <th scope="col">Names</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Activated</th>
+                    <th scope="col">last action</th>
                     <th scope="col">Cv</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% @active_users.each do |user| %>
+                    <% @all_doctors.each do |doctor| %>
                         <tr class="border-0 tr-hover">
                             <th scope="row"><%= column_counter += 1%></th>
-                            <%if user["username"].present?%>
-                                <td><%=user["username"]%></td>
+                            <%if doctor["username"].present?%>
+                                <td><%=doctor["username"]%></td>
                             <%else%>
                                 <td>Not set</td>
                             <%end%>
-                            <%if user["email"].present?%>
-                                <td><%=user["email"]%></td>
+                            <%if doctor["email"].present?%>
+                                <td><%=doctor["email"]%></td>
                             <%else%>
                                 <td>Not set</td>
                             <%end%>
-                            <td><%= time_ago_in_words(user["updated_at"])%><span> ago<span></td>
-                            <%if user["cv"].present?%>
-                                <td><%= link_to image_tag("https://img.icons8.com/windows/32/000000/download.png"), user.cv.url(), class:"download-icon"%></td>
+                            <td><%= time_ago_in_words(doctor["updated_at"])%><span> ago<span></td>
+                            <%if doctor["cv"].present?%>
+                                <td><%= link_to image_tag("https://img.icons8.com/windows/32/000000/download.png"), doctor.cv.url(), class:"download-icon"%></td>
                             <%else%>
                                 <td>Not set</td>
                             <%end%>
-                            <td><%= link_to image_tag("https://img.icons8.com/android/24/000000/trash.png"),  user, method: :delete, data: { confirm: 'Are you sure?' }, class:"download-icon"%></td>
+                            <td><%= link_to image_tag("https://img.icons8.com/android/24/000000/trash.png"),  doctor, method: :delete, data: { confirm: 'Are you sure?' }, class:"download-icon"%></td>
                         </tr>
                     <%end%>
                 </tbody>
             </table>
-            <%if @active_users.length > 5 %>
-                <div class="nav-pill"><div class="m-2 btn bg-accent btn-pill"><%= paginate @active_users, params: {requests:true},class:"pagination" %></div></div>
+            <%if @all_doctors.length > 5 %>
+                <div class="nav-pill"><div class="m-2 btn bg-accent btn-pill"><%= paginate @all_doctors, params: {requests:true},class:"pagination" %></div></div>
             <%end%>
         <%else%>
             <p class="text-light m5-5 mb-3 Display-4">There are no active doctors now now</p>
         <%end%>
-        <div class="nav-pill"><div class="m-2 btn bg-accent btn-pill"><%= paginate @active_users,class:"pagination" %></div></div>
     </div>
 </div>    

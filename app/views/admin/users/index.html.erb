@@ -1,6 +1,6 @@
 <div class="admin-page">
     <nav class="navbar navbar-expand-lg navbar-dark home-navbar">
-        <a class="navbar-brand" href="#">Admin</a>
+        <a class="navbar-brand" href="#">Admin dashboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -44,6 +44,19 @@
                             </path></g></g>
                         </svg>
                     </div>
+                    <div>
+                        <%if @all_requests.length > 0 %>
+                            <p class="text-light"><span class="h6">requests: </span><span><%= @all_requests.length %></span></p>
+                            <p class="text-light"><span class="h6">requests without full informations: </span><span><%= ((@all_requests_without_full_info.length.to_f/@all_requests.length.to_f)*100).round %>%</span></p>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-animated bg-light" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@all_requests_without_full_info.length.to_f/@all_requests.length.to_f)*100 %>%"></div>
+                            </div>
+                        <%else%>
+                            <span class="text-light">
+                                There are no requests right now, please be patient, requests will come..
+                            </span>
+                        <%end%>
+                    </div>
                 </div>
             </div>
             <div class="card m-2 card-bg-light doctor-card" style="width:20rem!important">
@@ -80,9 +93,23 @@
                             </path></g></g>
                         </svg>
                     </div>
+                    <div>
+                        <%if @all_doctors.length > 0 %>
+                            <p><span class="h6">doctors: </span><span><%= @all_doctors.length %></span></p>
+                            <p><span class="h6">active doctors: </span><span><%= ((@all_active_doctors.length.to_f/@all_doctors.length.to_f)*100).round %>%</span></p>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-animated bg-dark" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@all_active_doctors.length.to_f/@all_doctors.length.to_f)*100 %>%"></div>
+                            </div>
+                            <div><%= link_to "View all",  doctors_admin_user_path(current_user), class:"btn btn-outline-dark mt-2" %></div>
+                        <%else%>
+                            <span>
+                                There are no active doctors right now, please be patient, doctos will come..
+                            </span>
+                        <%end%>
+                    </div>
                 </div>
             </div>
-            <div class="card m-2 card-bg-success doctor-card" style="width:20rem!important">
+            <div class="card m-2 card-bg-success doctor-card" style="width:20rem!important" data-toggle="modal" data-target="#allsymptoms">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="card-title font-weight-bold text-light">Symptoms</span>
@@ -119,11 +146,34 @@
                             </path></g></g>
                         </svg>
                     </div>
+                    <div>
+                        <%if @all_symptoms.length > 0 %>
+                            <p class="text-light"><span class="h6">symptoms: </span><span><%= @all_symptoms.length %></span></p>
+                            <p class="text-light"><span class="h6">common symptoms: </span><span><%= ((@all_main_symptoms.length.to_f/@all_symptoms.length.to_f)*100).round %>%</span></p>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-animated bg-light" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@all_main_symptoms.length.to_f/@all_symptoms.length.to_f)*100 %>%"></div>
+                            </div>
+                        <%else%>
+                            <span class="text-light">
+                                There are no registered symptoms right now, please be patient....
+                            </span>
+                        <%end%>
+                    </div>
                 </div>
             </div>
         </div>
+        <p class="text-light mb-3 mt-5">Applications list</p>
+
+        <div class="search-form p-2 mb-3 mt-3">
+            <%= search_form_for @search, url: admin_users_path do |f| %>
+                <div class="d-flex align-items-center">
+                    <%= f.search_field :username_cont, class:"search-form-input", placeholder: "Search" %>
+                    <%= image_submit_tag("https://img.icons8.com/ios-glyphs/24/000000/search.png")%>
+                </div>
+            <% end %>
+        </div>
+        
         <%if @requests.length > 0%>
-            <p class="text-light mb-3 mt-5">Applications list</p>
             <% column_counter = 0 %>
             <table class="table table-striped table-light">
                 <thead>
@@ -163,14 +213,76 @@
                             <% else %>
                                 <td><span class="text-danger">can't activate</span></td>
                             <% end %>
-                            <td><%= link_to image_tag("https://img.icons8.com/android/24/000000/trash.png"),  request, method: :delete, data: { confirm: 'Are you sure?' }, class:"download-icon"%></td>
+                            <td><%= link_to image_tag("https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png"),  request, method: :delete, data: { confirm: 'Are you sure?' }, class:"download-icon"%></td>
                         </tr>
                     <%end%>
                 </tbody>
             </table>
             <div class="nav-pill"><div class="m-2 btn bg-accent btn-pill"><%= paginate @requests,class:"pagination" %></div></div>
         <%else%>
-            <p class="text-light m5-5 mb-3 Display-4">There are no applications now</p>
+            <div class="card">
+                <div class="card-body d-flex justify-content-center">
+                    <div>
+                        <img src="https://img.icons8.com/color/96/000000/lost-and-found.png"/>
+                        <p class="text-dark m5-5 mb-3 Display-4 mt-2">nothing found</p>
+                    </div>
+                </div>
+            </div>
         <%end%>
     </div>
+
+     <%if @all_symptoms.length > 0 %>
+        <div class="modal fade" id="allsymptoms" tabindex="-1" role="dialog" aria-labelledby="symptomsLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="symptomsLabele">Symptoms</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <% column_counter = 0 %>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Common</th>
+                                <th scope="col">Registeredby</th>
+                                <th scope="col">Date created at</th> 
+                                <th scope="col">Action</th> 
+                            </tr>
+                        </thead>
+                        <% count = 0%>
+                        <tbody>
+                            <% @all_symptoms.each do |symptom|%>
+                                <tr>
+                                    <th scope="row"><%= count += 1 %></th>
+                                    <td><%= symptom.title %></td>
+                                    <%if symptom.main%>
+                                        <td>Yes</td>
+                                    <%else%>
+                                        <td>No</td>
+                                    <%end%>
+                                    <%if symptom.user_id == current_user.id%>
+                                        <td class="d-flex justify-content-center"><mark>You</mark></td>
+                                    <%else%>
+                                        <% @all_doctors.each do |user| %>
+                                            <%if user.id == symptom.user_id%>
+                                                <td>Dr.<%= user.username %></td>
+                                            <%end%>
+                                        <% end %>
+                                    <%end%>
+                                    <td><%= time_ago_in_words(symptom["created_at"])%> ago</td>
+                                    <td><%= link_to image_tag("https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png"),  symptom, method: :delete, data: { confirm: 'Are you sure?' }, class:"download-icon"%></td>
+                                </tr>
+                            <%end%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <%end%>
+    
 </div> 

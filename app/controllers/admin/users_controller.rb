@@ -1,14 +1,16 @@
 module Admin 
     class UsersController < ApplicationController
-
         before_action :check_if_signed_in_and_is_admin
 
         def index
-            @requests = User.where(activated:false).page params[:page]
-            @all_requets_count = User.where(activated:false).length
-            @all_requets_without_full_info_count = User.where(activated:false,username:nil,cv:nil).length
-            @all_active_users_count = User.where(activated:true, admin:false ).length
-            @all_doctors_count = @all_requets_count + @all_active_users_count
+            @search = User.ransack(params[:q])
+            @requests = @search.result.where(activated:false, admin:false, isPatient:false).page(params[:page])
+            @all_requests = User.where(activated:false, admin:false, isPatient:false)
+            @all_requests_without_full_info = User.where(activated:false, admin:false, isPatient:false, username:nil).or(User.where(activated:false, admin:false, isPatient:false, cv:nil))
+            @all_doctors = User.where(activated:true, admin:false)
+            @all_active_doctors = User.where(activated:true, admin:false, available:true)
+            @all_symptoms = Symptom.all
+            @all_main_symptoms = Symptom.where(main:true)
         end
 
         def activate
@@ -27,7 +29,8 @@ module Admin
         end
 
         def doctors
-            @active_users = User.where(activated:true, admin:false).page params[:page]
+            @all_doctors = User.where(activated:true, admin:false).page params[:page]
+            @all_active_doctors = User.where(activated:true, admin:false, available:true)
         end
 
         private
