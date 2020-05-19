@@ -85,7 +85,10 @@
                         </div>
                         <div class="d-flex justify-content-around mt-2">
                             <%if @all_active_users_count > 1%>
-                                <span class="card-title text-dark">Want to view other doctors <br>you can chat with???<br> click <mark>View</mark> button</span>
+                                <div>
+                                    <span class="card-title text-dark">Want to view other doctors <br>you can chat with???<br> click <mark>View</mark> button</span>
+                                    <div class="mt-2"><%= link_to "View",user_doctors_path(current_user), class:"btn btn-outline-dark"%></div>
+                                </div>
                             <%else%>
                                 <span class="<%= @all_active_users_count > 1 ? "text-dark" : "text-light"%>">There are no other doctors to chat with<br>right now</span>
                             <%end%>
@@ -229,7 +232,9 @@
                                             <th scope="col">Common</th>
                                             <th scope="col">Registeredby</th>
                                             <th scope="col">Date created at</th>
-                                            <th scope="col">Actions</th>
+                                            <th scope="col">Action</th>
+                                            <th scope="col">Action</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <% count = 0%>
