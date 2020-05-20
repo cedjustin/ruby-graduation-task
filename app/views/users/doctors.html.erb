@@ -1,0 +1,55 @@
+<div class="doctor-page">
+    <nav class="navbar navbar-expand-lg navbar-light home-navbar">
+        <%= link_to('Back', users_path,class:"btn doctor-btn-pill text-light") %>   
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto doctor-nav-pill">
+                <li class="nav-item d-flex align-items-center m-2">
+                    <span class="text-light m-2"><%= current_user.email %></span>   
+                </li>
+                <li class="nav-item active m-2">
+                    <%= link_to('Logout', destroy_user_session_path, method: :delete,class:"btn doctor-btn-pill") %>   
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="card border-0 doctor-card mb-5">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <span class="card-title font-weight-bold text-dark">Doctors <%=@all_active_users_count = User.where(activated:true, admin:false ).length%></span>
+                    <img src="https://img.icons8.com/cotton/64/000000/doctors-bag--v1.png" class="download-icon"/>
+                </div>
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Names</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <% count = 0%>
+                    <tbody>
+                        <% @all_active_users.each do |doctor|%>
+                            <tr>
+                                <%if doctor.id == current_user.id%>
+                                <%else%>
+                                    <th scope="row"><%= count += 1 %></th>
+                                    <td>Dr.<%= doctor.username %></td>
+                                    <td><%= doctor.email %></td>
+                                    <td>
+                                        <%= link_to "talk to",  conversations_path(sender_id: current_user.id, recipient_id: doctor.id), method: :post , class:"text-success"%>
+                                    </td>
+                                <%end%>
+                            </tr>
+                        <%end%>
+                    </tbody>
+                </table>
+                <div class="doctor-nav-pill"><div class="m-2 btn doctor-btn-pill"><%= paginate @all_active_users,class:"pagination" %></div></div>
+            </div>
+        </div>
+    </div>
+</div>

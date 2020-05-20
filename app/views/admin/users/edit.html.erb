@@ -1,0 +1,55 @@
+<div class="login-page">
+  <div class="row container-fluid">
+    <div class="col-5 bg-white d-flex justify-content-center align-items-center">
+        <div class="ml-5 mr-5">
+            <p class="notice text-primary"><%= notice %></p>
+            <p class="alert text-danger"><%= alert %></p>
+            <p class="ml-5 mr-5 mb-5">
+                <span class="h4">Welcome to</span>
+                <span> <%= link_to "CRA", root_path, class:"display-4 text-dark"%></span>
+                <span class="h4">, Thank you for signing up with us</span>
+            </p>
+            <div>
+                <%if !@user.username.present?%>
+                    <p>
+                        <span>
+                            One last step, Please add fill up your names, and submit your CV we will reach send you an email after it has been reviewed
+                        </span>
+                    </p>
+                    <%= form_with(model: @user, local: true, html: { multipart: true }) do |form| %>
+
+                        <div class="field">
+                            <%= form.label :full_names %>
+                            <%= form.text_field :username, class: "form-control", class:"form-control"  %>
+                        </div>
+
+
+                        <div class="field mt-2 mb-2">
+                            <%= form.label "Upload your cv"%>
+                            <%= form.file_field :cv, class:"form-control" %>
+                        </div>
+
+                    <div class="actions mt-2 mb-2">
+                            <%= form.submit "Continue", class:"btn btn-block bg-light-accent text-light"  %>
+                        </div>
+
+                    <% end %>
+                <%elsif @user.username.present? && !@user.activated? %>
+                    <p>
+                        <span>
+                            We have received your application, our team is reviewing it, we will contact you soon.
+                        </span>
+                    </p>
+                <%end%>
+            </div>
+        </div>
+    </div>
+    <div class="col-7 login-page d-flex justify-content-center align-items-center">
+        <%if !@user.username.present? && !current_user.activated %>
+            <img src="/images/undraw_festivities_tvvj.png" class="doc2">
+        <%else%>
+            <img src="/images/undraw_doctors_hwty.png" class="doc2">
+        <%end%>
+    <div>
+  </div>
+</div>

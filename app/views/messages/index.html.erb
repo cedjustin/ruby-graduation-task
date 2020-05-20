@@ -1,0 +1,37 @@
+<div class="chat-page d-flex justify-content-center align-items-center">
+  <div>
+    <div class="conversation-card bg-light">
+      <div class="container" style="width:50rem">
+        <% if @over_six %>
+          <%= link_to 'Load previous messages....', '?m=all', class:"m-4 text-dark" %>
+        <% end %>
+        <div class="chatbox" id="chatbox">
+          <% @messages.each do |message| %>
+            <%= render "message", message: message%>
+          <% end %>
+        </div>
+        <% if @message.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@message.errors.count, "error") %> prohibited this task from being saved:</h2>
+            <ul>
+            <% @message.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= form_with(model: [@conversation, @message]) do |f| %>
+          <div class="field row border mt-5 bg-white" style="border-radius:15px">
+            <div class="col-11">
+              <%= f.text_field :body, placeholder: " Enter a message here", autofocus: true,class: "form-control message-area border-0" %>
+              <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+            </div>
+            <div class="col-1 d-flex align-items-center justify-content-center">
+              <%= image_submit_tag("https://img.icons8.com/material-sharp/24/000000/filled-sent.png")%>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

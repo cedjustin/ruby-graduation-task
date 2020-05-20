@@ -1,0 +1,32 @@
+<%= form_with(model: symptom, local: true, html: { multipart: true }) do |form| %>
+    <% if symptom.errors.any? %>
+        <div id="error_explanation">
+        <ul>
+            <% symptom.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+
+    <div class="field mt-3">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: "form-control"  %>
+    </div>
+
+    <div class="field">
+        <%= form.label :description %>
+        <%= form.text_area :content, class: "form-control"  %>
+    </div>
+
+    <div class="field mt-3">
+        <%= form.label :Please_select_whether_it_is_a_common_symptom_or_not %>
+        <%= form.select :main, [['not common', false],['common', true]], class:"form-control border-0" %>
+    </div>
+
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+
+    <div class="actions mt-2 mb-2 text-center">
+        <%= form.submit "send", class: "btn btn-outline-dark" %>
+    </div>
+<% end %>

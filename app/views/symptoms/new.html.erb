@@ -1,0 +1,19 @@
+<div class="symptoms-page">
+    <div class="row container-fluid">
+        <div class="col-5 bg-white">
+            <%= link_to('Back', users_path, class:"btn doctor-btn-pill text-light mt-3") %> 
+            <div class="mt-5">
+                <p class="h4">Thank you for working with us</p>
+                <p>Registering a symptom will help our visitors know more about <mark>COVID-19</mark>, 
+                that's we need proven informations so that we can mislead or cause unwanted panic</p>
+            </div>
+            <div class="container">
+                <p class="h6">Symptom</p>
+                <%= render 'form', symptom:@symptom %>
+            </div>
+        </div>
+        <div class="col-7 symptoms-sub-page d-flex justify-content-center align-items-center">
+            <img src="/images/undraw_medical_care_movn-_1_.png" class="doc2">
+        <div>
+    </div>
+</div>

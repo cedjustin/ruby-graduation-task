@@ -1,0 +1,383 @@
+// Place all the styles related to the essentials controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.main-container{
+    width: 100%;
+    height: 100vh;
+    background-color: #827397;
+}
+
+.big-dot-container{
+    height: 100vh;
+    width: 100vh;
+    background-color: #4d4c7d;
+    border-radius: 0% 50% 50% 0%;
+    z-index: -1;
+    margin-top: -56px;
+    margin-left: -20px;
+}
+
+.small-dot-container{
+    height: 50vh;
+    width: 50vh;
+    background-color: #fff0f5;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.doc{
+    z-index: 1;
+    margin-top: -225px;
+    width: 25rem;
+}
+
+.home-navbar{
+    z-index: 1
+}
+
+.bg-accent{
+    background-color: #f8e1f4!important;
+}
+
+.text-accent{
+    color: #f8e1f4
+}
+
+.doctor-text-accent{
+    color: #3b6978
+}
+
+.text-accent-dark{
+    color: #363062!important
+}
+
+.text-paragraphs{
+    color:#dbdbdb
+}
+
+.essential-card{
+    -webkit-box-shadow: 0px 13px 28px -26px rgba(54,48,98,1);
+    -moz-box-shadow: 0px 13px 28px -26px rgba(54,48,98,1);
+    box-shadow: 0px 13px 28px -26px rgba(54,48,98,1);
+    transition: all 0.9s;
+    border-radius: 15px!important;
+    width: 13rem!important
+}
+.essential-card:hover{
+    -webkit-box-shadow: 0px 13px 80px -26px rgba(216,185,195,1);
+    -moz-box-shadow: 0px 13px 80px -26px rgba(216,185,195,1);
+    box-shadow: 0px 13px 80px -26px rgba(216,185,195,1);
+    transition: all 0.9s;
+    border-radius: 25px!important;
+}
+
+.doc2{
+    width:30rem!important
+}
+
+.bg-dark-accent{
+    background-color: #363062!important;
+}
+
+.bg-light-accent{
+    background-color: #827397!important;
+}
+
+.admin-page{
+    background-color: #4d4c7d;
+    min-width: 100%;
+    min-height: 100vh;
+}
+
+.doctor-page{
+    background-color: #f9f9f9;
+    min-width: 100%;
+    min-height: 100vh;
+}
+
+.symptoms-page{
+    background-color: #204051;
+    min-width: 100%;
+    min-height: 100vh;
+}
+
+.symptoms-sub-page{
+    height: 100vh;
+}
+
+.nav-pill{
+    border-radius: 50px;
+    background-color: #827397;
+}
+
+.doctor-nav-pill{
+    border-radius: 50px;
+    background-color: #3b6978!important;
+}
+
+.btn-pill{
+    border-radius: 50px!important
+}
+
+.doctor-btn-pill{
+    border-radius: 50px!important;
+    background-color: #84a9ac!important;
+}
+
+.table-pill{
+    border-radius: 10px!important
+}
+
+.download-icon{
+    width:2rem!important
+}
+
+.bg-accent-success{
+    background-color: #43d8c9!important;
+}
+
+.card-columns{
+    column-count: 5!important;
+}
+
+.card-bg-light{
+    background-color: #f7f7f7!important
+}
+
+.card-bg-dark{
+    background-color: #d8b9c3!important
+}
+
+.card-bg-success{
+    background-color: #827397!important;
+}
+
+.doctor-card{
+    transition: all 0.9s;
+    border-radius: 15px!important;
+}
+
+.doctor-chat-image{
+    width: 10rem
+}
+
+.chat-page{
+    width: 100%;
+    height: 100vh;
+    background-color: #204051;
+}
+
+.chatbox{
+    height: 50vh;
+    overflow-y: scroll; 
+    overflow-x: inherit;
+}
+
+.message-area{
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+}
+
+.bubble-card{
+    max-width: 30rem;
+    word-wrap: break-word;
+}
+
+.sent-bubble-card{
+    border-radius: 0px 25px 25px 25px;
+}
+
+.received-bubble-card{
+    border-radius: 25px 0px 25px 25px;
+    background-color: #84a9ac;
+}
+
+.conversation-card{
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.screening-page{
+    height: 100vh;
+    background-color: #363062;
+}
+
+.symptom-form{
+    width: 100%;
+    min-height: 80vh;
+}
+
+@supports(-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type='checkbox'],
+    input[type='radio'] {
+      --active: #275EFE;
+      --active-inner: #fff;
+      --focus: 2px rgba(39, 94, 254, .3);
+      --border: #BBC1E1;
+      --border-hover: #275EFE;
+      --background: #fff;
+      --disabled: #F6F8FF;
+      --disabled-inner: #E1E6F9;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      height: 21px;
+      outline: none;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+      margin: 0;
+      cursor: pointer;
+      border: 1px solid var(--bc, var(--border));
+      background: var(--b, var(--background));
+      transition: background .3s, border-color .3s, box-shadow .2s;
+      &:after {
+        content: '';
+        display: block;
+        left: 0;
+        top: 0;
+        position: absolute;
+        transition: transform var(--d-t, .3s) var(--d-t-e, ease), opacity var(--d-o, .2s);
+      }
+      &:checked {
+        --b: var(--active);
+        --bc: var(--active);
+        --d-o: .3s;
+        --d-t: .6s;
+        --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+      }
+      &:disabled {
+        --b: var(--disabled);
+        cursor: not-allowed;
+        opacity: .9;
+        &:checked {
+          --b: var(--disabled-inner);
+          --bc: var(--border);
+        }
+        & + label {
+          cursor: not-allowed;
+        }
+      }
+      &:hover {
+        &:not(:checked) {
+          &:not(:disabled) {
+            --bc: var(--border-hover);
+          }
+        }
+      }
+      &:focus {
+        box-shadow: 0 0 0 var(--focus);
+      }
+      &:not(.switch) {
+        width: 21px;
+        &:after {
+          opacity: var(--o, 0);
+        }
+        &:checked {
+          --o: 1;
+        }
+      }
+      & + label {
+        font-size: 14px;
+        line-height: 21px;
+        display: inline-block;
+        vertical-align: top;
+        cursor: pointer;
+        margin-left: 4px;
+      }
+    }
+    input[type='checkbox'] {
+      &:not(.switch) {
+        border-radius: 7px;
+        &:after {
+          width: 5px;
+          height: 9px;
+          border: 2px solid var(--active-inner);
+          border-top: 0;
+          border-left: 0;
+          left: 7px;
+          top: 4px;
+          transform: rotate(var(--r, 20deg));
+        }
+        &:checked {
+          --r: 43deg;
+        }
+      }
+      &.switch {
+        width: 38px;
+        border-radius: 11px;
+        &:after {
+          left: 2px;
+          top: 2px;
+          border-radius: 50%;
+          width: 15px;
+          height: 15px;
+          background: var(--ab, var(--border));
+          transform: translateX(var(--x, 0));
+        }
+        &:checked {
+          --ab: var(--active-inner);
+          --x: 17px;
+        }
+        &:disabled {
+          &:not(:checked) {
+            &:after {
+              opacity: .6;
+            }
+          }
+        }
+      }
+    }
+    input[type='radio'] {
+      border-radius: 50%;
+      &:after {
+        width: 19px;
+        height: 19px;
+        border-radius: 50%;
+        background: var(--active-inner);
+        opacity: 0;
+        transform: scale(var(--s, .7));
+      }
+      &:checked {
+        --s: .5;
+      }
+    }
+  }
+
+.symptom-result-dot{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.patient-form{
+  height: 80vh;
+}
+
+.bg-pinky-accent{
+  background-color: #f5a7a7
+}
+
+.doctor-top-img{
+  width: 15rem
+}
+
+.search-form{
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  width: 220px
+}
+
+.search-form-input{
+  background:none!important;
+  border:none!important;
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}

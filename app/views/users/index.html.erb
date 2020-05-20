@@ -1,0 +1,281 @@
+<div class="doctor-page">
+    <nav class="navbar navbar-expand-lg navbar-light home-navbar">
+        <a class="navbar-brand" href="#">Doctor dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto doctor-nav-pill">
+                <li class="nav-item d-flex align-items-center m-2">
+                    <span class="text-light m-2"><%= current_user.email %></span>   
+                </li>
+                <li class="nav-item active m-2">
+                    <%if current_user.available == true%>
+                        <%= link_to "Go offline first", user_online_status_path(current_user), class:"btn doctor-btn-pill"%>
+                    <%else%>
+                        <%= link_to('Logout', destroy_user_session_path, method: :delete,class:"btn doctor-btn-pill") %>  
+                    <%end%> 
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-2">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <div>
+                <p class="h5 text-dark">Welcome, Dr. <%= current_user.username %>!</p>
+                <p class="text-secondary">Thank you for your help in these hard times that we are passing through</p>
+                <%if @all_symptoms_count == 0 %>
+                    <p class="text-secondary">By the way, there are no registered symptoms now, care to be the first to register the first one???? click <%= link_to('Register', new_symptom_path, class:"h5 text-dark") %> </p>
+                <%end%>
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    <div class="container-fluid mt-5 pb-5">
+        <div class="">
+            <div class="d-flex justify-content-around align-items-center m-3">
+                <div class="card p-2 doctor-card border-0 <%= @all_active_users_count > 1 ? "bg-white" : "bg-secondary"%>" style="min-width: 10rem">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <span class="card-title font-weight-bold <%= @all_active_users_count > 1 ? "text-dark" : "text-light"%>">Doctors</span>
+                            <%if @all_active_users_count < 2%>
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                    width="26" height="26"
+                                    viewBox="0 0 172 172"
+                                    style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" 
+                                    stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" 
+                                    stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" 
+                                    font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                    <path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff">
+                                    <path d="M13.4375,16.125c-4.44067,0 -8.0625,3.62183 -8.0625,8.0625v86c0,4.44067 3.62183,8.0625 
+                                    8.0625,8.0625h19.20093c0.16797,2.87647 -0.30444,8.96533 -5.3855,17.42676c-0.5459,0.92383 -0.49341,
+                                    2.08911 0.12598,2.94995c0.5144,0.71387 1.33325,1.12329 2.18359,1.12329c0.18897,0 0.38843,-0.02099 0.58789,
+                                    -0.06299c20.75464,-4.60864 28.4812,-16.76538 30.73828,-21.43701h19.73633v13.4375c0,4.44067 3.62183,8.0625 8.0625,
+                                    8.0625h32.87988c1.6167,4.94458 7.06518,16.48193 23.17969,18.78101c0.12598,0.021 0.25195,0.03149 0.37793,0.03149c0.81885,
+                                    0 1.5957,-0.37793 2.11011,-1.02881c0.59839,-0.75586 0.74536,-1.76367 0.38843,-2.65601c-3.2334,-8.073 -3.32788,-12.9021 -3.08643,
+                                    -15.12768h14.02539c4.44067,0 8.0625,-3.62183 8.0625,-8.0625v-59.125c0,-4.44067 -3.62183,-8.0625 -8.0625,-8.0625h-13.4375v-40.3125c0,
+                                    -4.44067 -3.62183,-8.0625 -8.0625,-8.0625zM13.4375,21.5h123.625c1.48022,0 2.6875,1.20728 2.6875,2.6875v86c0,1.48022 -1.20728,2.6875 -2.6875,
+                                    2.6875h-77.9375c-1.15478,0 -2.18359,0.73486 -2.55103,1.83716c-0.04199,0.13647 -4.24121,12.14624 -21.76245,18.10913c4.91309,-11.03345 2.78198,
+                                    -17.78369 2.677,-18.10913c-0.36743,-1.10229 -1.39624,-1.83716 -2.55103,-1.83716h-21.5c-1.48022,0 -2.6875,-1.20728 -2.6875,-2.6875v-86c0,
+                                    -1.48022 1.20728,-2.6875 2.6875,-2.6875zM34.9375,53.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875c0,1.48022 1.19678,2.6875 2.6875,2.6875h48.
+                                    375c1.49072,0 2.6875,-1.20728 2.6875,-2.6875c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM94.0625,53.75c-1.49072,0 -2.6875,1.20728 -2.6875,
+                                    2.6875c0,1.48022 1.19678,2.6875 2.6875,2.6875h10.75c1.49072,0 2.6875,-1.20728 2.6875,-2.6875c0,-1.48022 -1.19678,-2.6875 -2.6875,
+                                    -2.6875zM34.9375,69.875c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875c0,1.48022 1.19678,2.6875 2.6875,2.6875h59.125c1.49072,0 2.6875,
+                                    -1.20728 2.6875,-2.6875c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM145.125,69.875h13.4375c1.48022,0 2.6875,1.20728 2.6875,
+                                    2.6875v59.125c0,1.48022 -1.20728,2.6875 -2.6875,2.6875h-16.125c-1.01831,0 -1.94214,0.57739 -2.40405,1.48022c-0.29395,
+                                    0.58789 -2.45654,5.47998 0.92383,16.33496c-12.49268,-3.93677 -14.59229,-15.0542 -14.68677,-15.5686c-0.20996,-1.29126 -1.33325,
+                                    -2.24658 -2.64551,-2.24658h-34.9375c-1.48022,0 -2.6875,-1.20728 -2.6875,-2.6875v-13.4375h51.0625c4.44067,0 8.0625,-3.62183 8.0625,
+                                    -8.0625zM21.5,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,
+                                    -1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM34.9375,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,
+                                    2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,
+                                    -2.6875zM48.375,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,
+                                    -1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM61.8125,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,
+                                    2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,
+                                    -2.6875zM75.25,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,
+                                    -2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM88.6875,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,
+                                    2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM102.125,96.75c-1.49072,
+                                    0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,
+                                    -1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM115.5625,96.75c-1.49072,0 -2.6875,1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,
+                                    2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,-2.6875 -2.6875,-2.6875zM129,96.75c-1.49072,0 -2.6875,
+                                    1.20728 -2.6875,2.6875v5.375c0,1.48022 1.19678,2.6875 2.6875,2.6875c1.49072,0 2.6875,-1.20728 2.6875,-2.6875v-5.375c0,-1.48022 -1.19678,
+                                    -2.6875 -2.6875,-2.6875z"></path></g></g>
+                                </svg>
+                            <%else%>
+                                <img src="https://img.icons8.com/material-rounded/24/000000/chat.png"/>
+                            <%end%>
+                        </div>
+                        <div class="d-flex justify-content-around mt-2">
+                            <%if @all_active_users_count > 1%>
+                                <div>
+                                    <span class="card-title text-dark">Want to view other doctors <br>you can chat with???<br> click <mark>View</mark> button</span>
+                                    <div class="mt-2"><%= link_to "View",user_doctors_path(current_user), class:"btn btn-outline-dark"%></div>
+                                </div>
+                            <%else%>
+                                <span class="<%= @all_active_users_count > 1 ? "text-dark" : "text-light"%>">There are no other doctors to chat with<br>right now</span>
+                            <%end%>
+                        </div>
+                    </div>
+                </div>
+                <%if !current_user.available%>
+                    <div class="card p-2 doctor-card border-0">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <span>Profile</span>
+                                <img src="https://img.icons8.com/ios-glyphs/30/000000/person-male.png"/>
+                            </div>
+                            <div class="d-flex justify-content-center mt-3">
+                                <div>    
+                                    <span><span class="h6">Names: </span><span><%= current_user.username%></span><br>
+                                    <span class="h6">Email: </span><span><%= current_user.email%></span></span>
+                                    <div><%= link_to "Edit info", edit_user_registration_path(current_user), class:"btn btn-outline-dark mt-3"%></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <%end%>
+                <div class="card p-2 doctor-card border-0 <%= current_user.available == true ? "bg-success" : "bg-dark"%>" style="min-width: 10rem">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <span class="card-title font-weight-bold text-light"><%= current_user.available == true ? "ONLINE" : "OFFLINE"%></span>
+                            <%if current_user.available == true%>
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                width="26" height="26"
+                                viewBox="0 0 172 172"
+                                style=" fill:#000000;">
+                                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M134.16827,26.875c-3.92788,0.3101 -7.3131,2.89423 -8.60517,6.61538c-1.29207,3.72115 -0.28426,7.85577 2.60997,10.54327c10.69832,10.75 17.36538,25.47957 17.36538,41.96635c0,16.4351 -6.64122,31.19051 -17.36538,41.96635c-3.8762,3.87621 -3.8762,10.18149 0,14.05769c3.87621,3.87621 10.18149,3.87621 14.05769,0c14.26442,-14.34195 23.15385,-34.26562 23.15385,-56.02404c0,-21.8101 -8.88942,-41.68209 -23.15385,-56.02404c-1.83474,-1.9381 -4.36719,-3.04928 -7.02885,-3.10096c-0.33594,-0.02584 -0.69772,-0.02584 -1.03365,0zM35.55769,27.08173c-2.19651,0.28426 -4.23798,1.31791 -5.78846,2.89423c-14.26442,14.34195 -23.15385,34.26563 -23.15385,56.02404c0,21.8101 8.88942,41.68209 23.15385,56.02404c3.87621,3.87621 10.18149,3.87621 14.05769,0c3.87621,-3.8762 3.87621,-10.18149 0,-14.05769c-10.69831,-10.75 -17.36538,-25.47956 -17.36538,-41.96635c0,-16.4351 6.64122,-31.19051 17.36538,-41.96635c3.07512,-2.9976 3.87621,-7.6232 2.01563,-11.47356c-1.88642,-3.85036 -6.04688,-6.07272 -10.28486,-5.47837zM60.77885,48.99519c-2.17067,0.23257 -4.21214,1.18871 -5.78846,2.6875c-9.32872,8.47596 -15.29808,20.77644 -15.29808,34.31731c0,13.54087 5.76262,25.86719 15.09135,34.31731c4.05709,3.72115 10.33654,3.4369 14.05769,-0.62019c3.72115,-4.05709 3.4369,-10.33654 -0.62019,-14.05769c-5.32331,-4.83233 -8.68269,-11.75781 -8.68269,-19.63942c0,-7.82993 3.33353,-14.78125 8.68269,-19.63942c3.25601,-2.84254 4.28967,-7.44231 2.60997,-11.39603c-1.70553,-3.95372 -5.76262,-6.38281 -10.05228,-5.96935zM109.77404,48.99519c-4.03125,0.23257 -7.51983,2.86839 -8.83774,6.66707c-1.29207,3.82452 -0.18089,8.03665 2.84254,10.69831c5.32332,4.83233 8.68269,11.75781 8.68269,19.63942c0,7.82993 -3.33353,14.78125 -8.68269,19.63942c-3.02344,2.2482 -4.52224,6.02103 -3.85036,9.71635c0.67187,3.72115 3.38522,6.71875 7.00301,7.77824c3.61779,1.0595 7.51983,-0.05168 10.07812,-2.81671c9.32872,-8.47596 15.29808,-20.77644 15.29808,-34.31731c0,-13.54087 -5.76262,-25.86719 -15.09135,-34.31731c-1.98978,-1.88642 -4.70312,-2.86839 -7.44231,-2.6875zM86,74.00962c-6.64122,0 -11.99038,5.34916 -11.99038,11.99038c0,6.61538 5.34916,11.99038 11.99038,11.99038c6.64122,0 11.99038,-5.375 11.99038,-11.99038c0,-6.64122 -5.34916,-11.99038 -11.99038,-11.99038z">
+                                </path></g></g></svg>
+                            <%else%>
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                width="26" height="26"
+                                viewBox="0 0 172 172"
+                                style=" fill:#000000;">
+                            <g fill="none" fill-rule="nonzero" 
+                                stroke="none" stroke-width="1" stroke-linecap="butt" 
+                                stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" 
+                                stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" 
+                                text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" 
+                                fill="none"></path><g fill="#ffffff">
+                                <path d="M5.99519,-0.20673c-0.28426,0.05168 -0.56851,0.12921 -0.82692,0.20673c-2.48077,
+                                0.4393 -4.47055,2.2482 -5.16827,4.65144c-0.69772,2.42909 0.02584,5.01322 1.86058,6.71875l47.13462,
+                                46.92788l111.63462,111.84135c2.63582,2.63582 6.8738,2.63582 9.50962,0c2.63582,-2.63581 2.63582,
+                                -6.87379 0,-9.50962l-23.77404,-23.77404c12.42969,-14.52283 19.01923,-32.37921 19.01923,-51.47596c0,
+                                -21.16406 -7.93329,-41.01022 -23.15385,-56.23077c-3.97956,-3.97956 -9.87139,-3.97956 -13.85096,0c-3.97956,
+                                3.97957 -3.97956,9.8714 0,13.85096c11.24099,11.91286 17.15865,27.13342 17.15865,43c0,13.79928 -4.47055,
+                                26.51322 -13.02404,37.00481l-9.30288,-9.30288c5.89183,-7.85577 9.09615,-17.57212 9.09615,-27.70192c0,
+                                -13.23077 -5.375,-25.71214 -15.29808,-34.31731c-3.97956,-3.97956 -10.54327,-3.35937 -13.85096,0.62019c-3.97956,
+                                3.97957 -3.35937,10.54327 0.62019,13.85096c5.29747,5.29747 8.68269,12.5589 8.68269,19.84615c0,4.59976 -1.42128,
+                                9.14784 -3.72115,13.23077l-9.92308,-9.92308c0.28426,-1.05949 0.41346,-2.11899 0.41346,-3.30769c0,
+                                -7.28726 -5.94351,-13.23077 -13.23077,-13.23077c-1.11118,0 -2.2482,0.15505 -3.30769,0.41346l-11.78365,
+                                -11.78365c1.00781,-3.17849 0.51683,-6.51202 -2.06731,-9.09615c-2.29988,-2.76503 -6.22776,-3.54026 -9.71635,
+                                -2.6875l-12.40385,-12.40385c0.10337,-2.60997 -1.00781,-5.34916 -3.10096,-7.44231c-1.98978,-1.98978 -4.34135,
+                                -2.76503 -6.82212,-2.6875c-0.07753,0 -0.12921,0 -0.20673,0l-25.22115,-25.22115c-1.36959,
+                                -1.47296 -3.35937,-2.22236 -5.375,-2.06731zM17.77885,45.6875c-7.28726,11.91286 -11.16346,
+                                25.76382 -11.16346,40.3125c0,21.16406 7.93329,41.01022 23.15385,56.23077c1.98978,1.98978 4.59976,
+                                2.6875 7.23558,2.6875c2.63582,0 5.24579,-0.69772 7.23558,-2.6875c3.97957,-3.97956 3.97957,-9.87139 0,
+                                -13.85096c-11.91286,-11.24099 -17.77885,-26.51322 -17.77885,-42.37981c0,-9.2512 2.01563,-17.90805 5.99519,
+                                -25.84135zM42.37981,70.08173c-1.31791,5.29747 -2.6875,10.62079 -2.6875,15.91827c0,13.23077 5.375,
+                                25.71214 15.29808,34.31731c1.98978,1.98978 3.97957,2.6875 6.61538,2.6875c2.63582,0 5.24579,
+                                -1.31791 7.23558,-3.30769c3.97957,-3.97956 3.35938,-10.54327 -0.62019,-13.85096c-5.29747,
+                                -5.29747 -8.01081,-11.99038 -8.68269,-18.60577z"></path></g></g></svg>
+                            <%end%>
+                        </div>
+                        <div class="d-flex justify-content-around mt-2">
+                            <p class="text-light">You are <%= current_user.available == true ? "online" : "offline"%> patients <%= current_user.available == true ? "can" : "can't"%> chat with you<br> 
+                            to make yourself <%= current_user.available != true ? "avaliable" : "not avaliable"%> for service..<br> 
+                            please click <mark>Go <%= current_user.available == true ? "offline" : "online"%></mark> button below</p>
+                        </div>
+                        <%if current_user.available == true%>
+                            <%= link_to "Go offline", user_online_status_path(current_user), class:"btn btn-dark"%>
+                        <%else%>
+                            <%= link_to "Go online", user_online_status_path(current_user), class:"btn btn-success"%>
+                        <%end%>
+                    </div>
+                </div>
+                <%if current_user.available == true%>
+                    <div class="card p-2 doctor-card border-0 animated fadeIn" style="min-width: 15rem">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="card-title font-weight-bold text-dark">Patients list</span>
+                                <img src="https://img.icons8.com/cotton/26/000000/list.png" class="download-icon"/>
+                            </div>
+                            <%if @all_patients_conversations.length < 1 %>
+                                <p>There are no patients conversations right now<br>please wait...</p>
+                            <%else%>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Names</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%n=0%>
+                                        <%@all_patients_conversations.each do|conversation|%>
+                                            <%@all_patients.each do|patient|%>
+                                                <%if patient.id == conversation.sender_id%>
+                                                    <tr>
+                                                        <th scope="row"><%= n+=1%></th>
+                                                        <td>Patient. <%= patient.username%></td>
+                                                        <td>
+                                                            <%= link_to "Talk to",  conversations_path(sender_id: patient.id, recipient_id: current_user.id), method: :post , class:"text-success"%>
+                                                        </td>
+                                                    </tr>
+                                                <%end%>
+                                            <%end%>
+                                        <%end%>
+                                    </tbody>
+                                </table>
+                            <%end%>
+                        </div>
+                    </div>
+                <%end%>
+            </div>
+            <%if @all_symptoms_count != 0%>
+                <p class="mt-5 mb-2">Symptoms</p>
+                <div class="card border-0 doctor-card p-2">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <span class="card-title font-weight-bold text-dark">Symptoms <%=@all_symptoms_count = Symptom.all.length%> </span>
+                            <%= link_to('Register', new_symptom_path, class:"btn text-light doctor-btn-pill") %> 
+                        </div>
+                        <div class="mt-4">
+                            <%if @all_symptoms_count == 0%>
+                                <div class="container d-flex justify-content-center">
+                                    <span>There are no registered <mark>Symptoms</mark> yet, Be the first to register a 
+                                    <mark>Symptom</mark> by clicking register button above in the corner</span>
+                                </div>
+                            <%else%>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Common</th>
+                                            <th scope="col">Registeredby</th>
+                                            <th scope="col">Date created at</th>
+                                            <th scope="col">Action</th>
+                                            <th scope="col">Action</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <% count = 0%>
+                                    <tbody>
+                                        <% @all_symptoms.each do |symptom|%>
+                                            <tr>
+                                                <th scope="row"><%= count += 1 %></th>
+                                                <td><%= symptom.title %></td>
+                                                <%if symptom.main%>
+                                                    <td>Yes</td>
+                                                <%else%>
+                                                    <td>No</td>
+                                                <%end%>
+                                                <%if symptom.user_id == current_user.id%>
+                                                    <td class="d-flex justify-content-center"><mark>You</mark></td>
+                                                <%else%>
+                                                    <% @users.each do |user| %>
+                                                        <%if user.id == symptom.user_id%>
+                                                            <td>Dr.<%= user.username %></td>
+                                                        <%end%>
+                                                    <% end %>
+                                                <%end%>
+                                                <td><%= time_ago_in_words(symptom["created_at"])%> ago</td>
+                                                <td><%= link_to "View", symptom_path(symptom), class:"doctor-text-accent"%></td>
+                                                <%if symptom.user_id == current_user.id%>
+                                                    <td><%= link_to image_tag("https://img.icons8.com/pastel-glyph/24/000000/edit.png"), edit_symptom_path(symptom), class:"doctor-text-accent"%></td>
+                                                    <td><%= link_to image_tag("https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png"),  symptom, method: :delete, data: { confirm: 'Are you sure?' }, class:"download-icon"%></td>
+                                                <%end%>
+                                            </tr>
+                                        <%end%>
+                                    </tbody>
+                                </table>
+                                <div class="doctor-nav-pill"><div class="m-2 btn doctor-btn-pill"><%= paginate @all_symptoms,class:"pagination" %></div></div>
+                            <%end%>
+                        </div>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    </div>
+</div>

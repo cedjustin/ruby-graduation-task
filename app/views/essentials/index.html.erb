@@ -1,0 +1,69 @@
+<div class="main-container">
+    <nav class="navbar navbar-expand-lg navbar-dark home-navbar">
+        <a class="navbar-brand" href="#">CRA</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <%= link_to "Doctors", users_path, class:"nav-link"%>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <div class="big-dot-container d-flex align-items-end justify-content-center">
+                    <div>
+                        <div class="small-dot-container animate__animated animate__fadeInLeft"></div>
+                        <img src="/images/healthcare.png" alt="rss feed" class="doc animate__animated animate__fadeInLeft animate__delay-1s" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 d-flex justify-content-center align-items-center">
+                <div>
+                    <h1 class="display-4">Your medical partner in the fight against COVID-19</h1>
+                    <hr class="my-4 bg-light">
+                    <p class="text-paragraphs">You can take a short screening test to diagnose your self by click <mark class="animate__animated animate__heartBeat animate__delay-3s">Self Screening</mark> button, or if you are a doctor that wants to help please click <mark class="animated heartBeat delay-3s">Apply</mark>.</p>
+                    <div class="">
+                        <%= link_to "Talk to a doctor", essential_patient_path(@patient.ids), class:"btn btn-lg m-2 bg-accent"%>
+                        <%= link_to "Self Screening", essential_screening_path(@patient.ids), class:"btn btn-lg m-2 btn-outline-light"%>
+                        <%= link_to "Apply", new_user_registration_path, class:"btn btn-outline-dark btn-lg m-2"%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%# cards %>
+<div class="bg-light">
+    <div class="container pt-5 pb-5">
+        <div class="mb-5">
+            <h1 class="lead">Main news</h1>
+        </div>
+       <%# news part%>
+        <div class="card-columns">
+            <% @all_news.each do |news| %>
+                <div class="card border-0 essential-card">
+                    <%if news["urlToImage"].present?%>
+                        <%= image_tag news["urlToImage"], class:"card-img-top"%>
+                    <%end%>
+                    <div class="card-body">
+                        <p class="h5 card-title" ><%= news["title"]%></p>
+                        <div class="container">
+                            <p class="card-text d-inline"><small class="text-muted"><%= time_ago_in_words(news["publishedAt"])%></small></p>
+                            <%= link_to "readmore", news["url"], :popup=>true %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+<div class="footer-copyright text-center py-3">
+    © 2020 Copyright:
+</div>

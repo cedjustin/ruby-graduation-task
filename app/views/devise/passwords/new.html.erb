@@ -1,0 +1,29 @@
+<div class="login-page">
+  <div class="row container-fluid">
+    <div class="col-5 bg-white d-flex justify-content-center align-items-center">
+      <div>
+        <p class="notice text-primary"><%= notice %></p>
+        <p class="alert text-danger"><%= alert %></p>
+        <%= link_to "CRA", root_path, class:"display-4 text-dark"%>
+        <p class="lead mt-1 mb-2">We will send you an email with a link to reset your password</p>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Reset password", class:"mt-2 btn btn-primary" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+    <div class="col-7 login-page d-flex justify-content-center align-items-center">
+      <img src="/images/undraw_access_account_99n5.png" class="doc2">
+    <div>
+  </div>
+</div>
