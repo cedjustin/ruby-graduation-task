@@ -49,7 +49,7 @@ https://cacoo.com/diagrams/SdWSaI2lHy7LaTru/E63CC
 
 <h3>How to use the system</h3>
 
-<h5>User's of the system</h5>
+<h5>Users of the system</h5>
 
 - Doctor
 - Admin
