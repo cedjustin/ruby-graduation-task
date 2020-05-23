@@ -46,3 +46,56 @@ https://cacoo.com/diagrams/SdWSaI2lHy7LaTru/E63CC
 - bcrypt<br>
 - carrier-wave<br>
 - Devise
+
+<h3>How to use the system</h3>
+
+<h5>User's of the system</h5>
+
+- Doctor
+- Admin
+- Patient
+
+<h6>Doctor</h6>
+
+**signup**
+- open the main page
+- click doctor on the top right of the main page
+- click signup
+- fill in the form(continue)
+- fill in the form and upload your cv(continue)
+- wait for an email that tells you that your account has been activated
+
+**signin**<br>
+after your account has been activated
+- open main page
+- click doctor on the top right of the main page
+- fill in the form(continue)
+- navigate according to the indicators
+
+**go online**<br>
+for the patients to see you, you need to be online by following the indicators in your dashboard
+
+**go offline**<br>
+for the patients to not see you when you are not working go offline by following the indicators in your dashboard
+
+**other activities**<br>
+follow the indicators in your dashboard
+
+<h6>Admin</h6>
+
+**Activate a doctor**
+- open main page
+- click doctor on the top right of the main page
+- fill in the form with the right credentials(continue)
+- look for requests table below
+- go to the last page
+- download their cv and examine it
+- click activate
+
+**other activities**
+follow the indicators in your dashboard
+
+<h6>Patient</h6>
+
+**all activities**
+follow the indicators from the main page
