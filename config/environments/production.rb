@@ -8,6 +8,16 @@ Rails.application.configure do
   config.web_socket_server_url = "wss://nameless-hollows-99756.herokuapp.com//cable"
 
   config.action_cable.allowed_request_origins = ['https://nameless-hollows-99756.herokuapp.com', 'http://nameless-hollows-99756.herokuapp.com/']
+  
+  config.action_mailer.delivery_method = :smtp 
+  config.action_mailer.smtp_settings = {
+    :user_name => ENV['gmail_username'],
+    :password => ENV['gmail_password'],
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :authentication => "plain",
+    :enable_starttls_auto => true
+  }
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
