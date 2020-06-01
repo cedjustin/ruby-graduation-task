@@ -11,7 +11,6 @@ As Covid-19’s infections keeps increase, many people are confused and there is
 Ruby 2.6.5, Rails 5.2.4
 
 <h3>Functions</h3>
-- Create Admin user<br>
 - Create Users (Doctors)<br>
 - Edit/Delete Users (Doctors)<br>
 - Create Users (Patients)<br>
@@ -23,7 +22,6 @@ Ruby 2.6.5, Rails 5.2.4
 - Search function<br>
 - Getting News function<br>
 - Self Screening function<br>
-- guard-livereload<br>
 - Activate doctor’s accounts function
 
 <h3>Catalog design</h3>
