@@ -13,5 +13,9 @@ end
     User.create! :email => "johnd#{t}@gmail.com", :password => "topsecret#{t}", :password_confirmation => "topsecret#{t}", :admin => false, :activated => false
 end
 
+2.times do |t|
+    User.create! :username => "doctor user#{t}", :email => "doctor#{t}@gmail.com", :password => "topsecret", :password_confirmation => "topsecret", :admin => false, :activated => true, :cv => "cv.pdf"
+end
+
 User.create! :username => 'Patient0',:isPatient => true, :email => 'patient0@patient0.patient0', :password => 'patient0', :password_confirmation => 'patient0'
 User.create! :username => 'John Doe', :email => 'john@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :admin => true, :activated => true
