@@ -8,9 +8,9 @@
         <%if !@patient_processed%>
             <div class="patient-form container d-flex align-items-center">
                 <%= form_with(model: @patient, local: true) do |form| %>
-                    <p>One step before you continue, please state your full names and click continue</p>
+                    <p>One step before you continue, please state your first name and click continue</p>
                     <div class="field">
-                        <%= form.label :Full_names, class: "h5" %>
+                        <%= form.label :First_name, class: "h5" %>
                         <%= form.text_field :username, class: "form-control" %>
                     </div>
                     <%= form.submit "continue", class:"btn btn-primary mt-5"%>

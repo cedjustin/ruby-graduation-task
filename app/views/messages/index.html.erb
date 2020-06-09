@@ -1,6 +1,9 @@
 <div class="chat-page d-flex justify-content-center align-items-center">
   <div>
-    <div class="conversation-card bg-light">
+    <div>
+      <%= link_to 'Leave chat room', :back, class:"btn btn-outline-danger", data: { confirm: "Are you sure??" }%>
+    </div>
+    <div class="conversation-card bg-light mt-5">
       <div class="container" style="width:50rem">
         <% if @over_six %>
           <%= link_to 'Load previous messages....', '?m=all', class:"m-4 text-dark" %>
@@ -12,7 +15,7 @@
         </div>
         <% if @message.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(@message.errors.count, "error") %> prohibited this task from being saved:</h2>
+            <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
             <ul>
             <% @message.errors.full_messages.each do |message| %>
               <li><%= message %></li>
